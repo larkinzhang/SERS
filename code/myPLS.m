@@ -6,14 +6,13 @@ nreps = 5;
 %% Virtualization
 fprintf('Visualizing dataset for PLS.\n\n');
 cc = hsv(20);
-load samples_chip1;
-load pH;
+load samples_chip1_new;
+load pH2;
 
-featurenum = size(X, 1);
+
 
 X = X';
-sumup = X(:,22);
-X = bsxfun(@rdivide,X,sumup);
+featurenum = size(X, 1);
 [n,m] = size(X);
 [~,~,Xscores,~,~,PLSPctVar] = plsregress(X,pH);
 
@@ -54,7 +53,7 @@ pause;
 fprintf('Divide dataset into train set and test set and evaluate the model.\n\n');
 load index;
 
-compcnt = 15;
+compcnt = 12;
 v = zeros(compcnt*nreps, featurenum);
 
 for k = 1:compcnt

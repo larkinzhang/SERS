@@ -7,8 +7,8 @@ nreps = 5;
 %% Virtualization
 fprintf('Visualizing dataset for PCA.\n\n');
 cc = hsv(nlevels);
-load samples_chip1;
-load pH;
+load samples_chip1_new;
+load pH2;
 
 featurenum = size(X, 1);
 

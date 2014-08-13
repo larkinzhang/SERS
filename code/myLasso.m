@@ -6,7 +6,7 @@ nlevels = 12;
 nreps = 5;
 
 load samples_chip1;
-load pH;
+load pH;-
 
 featurenum = size(X, 1);
 

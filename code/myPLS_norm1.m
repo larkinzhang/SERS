@@ -6,13 +6,14 @@ nreps = 5;
 %% Virtualization
 fprintf('Visualizing dataset for PLS.\n\n');
 cc = hsv(20);
-load samples_chip1;
-load pH;
+load samples_chip1_new;
+load pH2;
 
-
+featurenum = size(X, 1);
 
 X = X';
-featurenum = size(X, 1);
+sumup = sum(X,2);
+X = bsxfun(@rdivide,X,sumup);
 [n,m] = size(X);
 [~,~,Xscores,~,~,PLSPctVar] = plsregress(X,pH);
 
@@ -53,7 +54,7 @@ pause;
 fprintf('Divide dataset into train set and test set and evaluate the model.\n\n');
 load index;
 
-compcnt = 12;
+compcnt = 15;
 v = zeros(compcnt*nreps, featurenum);
 
 for k = 1:compcnt
@@ -86,7 +87,7 @@ for k = 1:compcnt
     plot(lx, ly);
     hold off;
 
-    fprintf('The average of standardized mean squared error with %d components is %f\n', 2*k, tot / nreps);
+    fprintf('The average of SMSE with %d components is %f\n', 2*k, tot / nreps);
 end
 
 figure('name', 'figure for v');

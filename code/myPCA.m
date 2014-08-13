@@ -7,8 +7,8 @@ nreps = 5;
 fprintf('Visualizing dataset for PCA.\n\n');
 cc = hsv(nlevels);
 
-load samples_chip1;
-load pH;
+load samples_chip1_new;
+load pH2;
 
 X = X';
 featurenum = size(X, 2);
