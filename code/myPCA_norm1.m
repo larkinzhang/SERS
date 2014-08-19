@@ -84,7 +84,7 @@ for k = 1:compcnt
         xlabel('Observed Response');
         ylabel('Fitted Response');
 
-        SMSE = (sum((yfitPCR - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2)) / nlevels;
+        SMSE = (sum((yfitPCR - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
         tot = tot + SMSE;
     end
     lx = [min(pHtest) max(pHtest)];
@@ -92,7 +92,7 @@ for k = 1:compcnt
     plot(lx, ly);
     hold off;
 
-    fprintf('The average of standardized mean squared error with %d components is %f\n', 2*k, tot / nreps);
+    fprintf('The average of SMSE with %d components is %f\n', 2*k, tot / nreps);
 end
 
 figure('name', 'Figure for v');

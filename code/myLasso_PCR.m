@@ -11,8 +11,9 @@ load pH2;
 featurenum = size(X, 1);
 
 X = X';
+sumup = sum(X,2);
+X = bsxfun(@rdivide,X,sumup);
 
-Xtrim = X(:,200:1000);
 
 % [B,FitInfo] = lasso(Xtrim,pH);
 
@@ -34,11 +35,11 @@ load index;
 
 %load lambda;
 %lambda = lambda';
-lambda = 0.0001:0.0001:0.0021;
+lambda = 0:0.00001:0.0001;
 %lambda=[0.0001 0.0008];
 lambdacnt = size(lambda,2);
 tot = zeros(lambdacnt,1);
-v = zeros(lambdacnt*nreps, 1000-200+1);
+v = zeros(lambdacnt*nreps, 1044);
 
 fhandle = zeros(lambdacnt,1);
 
@@ -53,17 +54,20 @@ end
 
 for i = 1:nreps
         test = (indices == i); train = ~test;
-        Xtrain = Xtrim(train,:);
+        Xtrain = X(train,:);
         pHtrain = pH(train);
-        Xtest = Xtrim(test,:);
+        Xtest = X(test,:);
         pHtest = pH(test);
 
-        B = lasso(Xtrain,pHtrain - mean(pHtrain),'Lambda',lambda);
+        [PCALoadings,PCAScores] = pca(Xtrain);
+        B = lasso(PCAScores(:,1:10),pHtrain - mean(pHtrain),'Lambda',lambda);
    
         for k = 1:lambdacnt
             figure(fhandle(k));
             hold on;
             betaLasso = B(:,k);
+            betaLasso = PCALoadings(:,1:10) * betaLasso;
+            
             v((k-1)*nreps+i,:) = betaLasso;
         
             betaLasso = [mean(pHtrain) - mean(Xtrain) * betaLasso; betaLasso];
@@ -71,7 +75,7 @@ for i = 1:nreps
             plot(pHtest,yfitLasso,'bo');
             
 
-            SMSE = (sum((yfitLasso - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
+            SMSE = (sum((yfitLasso - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2)) / nlevels;
             tot(k) = tot(k) + SMSE;
         end
 end
@@ -79,8 +83,6 @@ end
 for k=1:lambdacnt
     fprintf('The average of SMSE with lambda = %f is %f\n', lambda(k), tot(k) / nreps);
 end
-
-
 
 %figure;
 %hold on;

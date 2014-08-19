@@ -9,10 +9,9 @@ cc = hsv(20);
 load samples_chip1_new;
 load pH2;
 
-
+featurenum = size(X, 1);
 
 X = X';
-featurenum = size(X, 1);
 [n,m] = size(X);
 [~,~,Xscores,~,~,PLSPctVar] = plsregress(X,pH);
 
@@ -69,16 +68,19 @@ for k = 1:compcnt
         Xtest = X(test,:);
         pHtest = pH(test);
    
-        [Xloadings,Yloadings,Xscores,Yscores,betaPLS,PLSPctVar] = plsregress(Xtrain,pHtrain,2*k);
+        [Xloadings,Yloadings,Xscores,Yscores,~,PLSPctVar] = plsregress(Xtrain,pHtrain,2*k);
+        betaPLS = regress(pHtrain - mean(pHtrain), Xtrain * Xloadings(:,1:2*k));
+        betaPLS = Xloadings(:,1:2*k) * betaPLS;
         
-        v((k-1)*nreps+i, :) = betaPLS(2:featurenum+1,:)';
+        v((k-1)*nreps+i, :) = betaPLS';
         
+        betaPLS = [mean(pHtrain) - mean(Xtrain) * betaPLS; betaPLS];
         yfitPLS = [ones(size(Xtest,1),1) Xtest]*betaPLS;
         plot(pHtest,yfitPLS,'bo');
         xlabel('Observed Response');
         ylabel('Fitted Response');
     
-        SMSE = (sum((yfitPLS - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2)) / nlevels;
+        SMSE = (sum((yfitPLS - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
         tot = tot + SMSE;
     end
     lx = [min(pHtest) max(pHtest)];
@@ -86,7 +88,7 @@ for k = 1:compcnt
     plot(lx, ly);
     hold off;
 
-    fprintf('The average of standardized mean squared error with %d components is %f\n', 2*k, tot / nreps);
+    fprintf('The average of SMSE with %d components is %f\n', 2*k, tot / nreps);
 end
 
 figure('name', 'figure for v');

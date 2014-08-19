@@ -83,7 +83,7 @@ for k = 1:compcnt
         xlabel('Observed Response');
         ylabel('Fitted Response');
 
-        SMSE = (sum((yfitPCR - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2)) / nlevels;
+        SMSE = (sum((yfitPCR - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
         tot = tot + SMSE;
     end
     lx = [min(pHtest) max(pHtest)];
