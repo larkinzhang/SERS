@@ -5,8 +5,8 @@ clear; close all; clc
 nlevels = 12;
 nreps = 5;
 
-load samples_chip1;
-load pH;
+load samples_chip1_new;
+load pH2;
 
 featurenum = size(X, 1);
 
@@ -18,7 +18,7 @@ X = bsxfun(@rdivide,X,sumup);
 % Divide dataset into training set and testing set and evaluate the model.
 load index;
 
-sigma = 0.0001:0.0001:0.001;
+sigma = 0.0021:0.0001:0.004;
 sigmacnt = size(sigma,2);
 %v = zeros(compcnt*nreps, featurenum);
 
@@ -47,7 +47,7 @@ for k = 1:sigmacnt
         plot(pHtest, predict,'bo');
         
         
-        SMSE = (sum((predict - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2)) / nlevels;
+        SMSE = (sum((predict - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
         tot = tot + SMSE;
     end
     lx = [min(pHtest) max(pHtest)];

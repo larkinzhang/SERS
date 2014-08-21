@@ -40,27 +40,27 @@
 \section{Introduction}
 Blood tests are often used in health care to determine physiological and biochemical states of patients. But using the traditional way, we need to draw blood from patients first and it does take some time to have some tests on it. 
 
-Recently, the chemists found the gold nanoshells can be used as intracellular sensors based on surface-enhanced Raman scattering (SERS) and these materials exhibit low toxicity to the cells of interest. This is a very good property since we can just put the nanoshell into the blood vessel of patients and measure redox potential or pH values of patients' blood instantly.
+Recently, the chemists found that gold nanoshells can be used as intracellular sensors based on surface-enhanced Raman scattering (SERS) and these materials exhibit low toxicity to the cells of interest. This is a very good property since we can just put the nanoshell into the blood vessel of patients and measure redox potential or pH values of patients' blood instantly.
 
-So when given the spectrum, the problem is how to predict the pH value. We have tried 4 regression methods, that is principal component regression (PCR), partial least squared regression (PLSR), lasso regression and kernel regression, on the data.
+So when given the spectrum, the problem is how to predict the pH value. We have tried four regression methods, that is principal component regression (PCR), partial least squared regression (PLSR), lasso regression and kernel regression, on the data.
 
 \section{Data}
-There are 120 samples in the dataset by 2 chips. For each chip, there are 5 replications for 12 pH values, that is 60 samples. It's a 1044 dimension vector for each sample, and each dimension represents a Raman intensity for a Raman shift.
+There are 120 samples in the dataset by 2 chips. For each chip, there are 5 replications for 12 pH values, that is 60 samples. The spectrum is a 1044 dimension vector for each sample, and each dimension represents a Raman intensity for a Raman shift.
 
-There are 2 datasets we have got for experiments. The first dataset we used was produced with the order that pH value is increasing. We have found in the dataset that the intensity is lower and lower when the pH value is greater than 7 as show in figure \ref{pic1}.
+There are 2 datasets we have got for experiments. The first dataset we used was produced with the order that pH value is increasing. We have found in the dataset that the intensity is lower and lower when the pH value is greater than 7 as shown in Figure \ref{pic1}.
 
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=.6\textwidth]{images/compare.pdf}\\
-  \caption{The mean spectrum for different pH values}\label{pic1}
+  \caption{The mean spectrum for different pH values in the first dataset}\label{pic1}
 \end{figure}
 
 However, the chemists have told us that the intensity is lower and lower maybe due to the systematic loss of nanoparticles through time.
 
-Thus, we got a another set of data measured with randomized order reproduced by chemists. And the experiments and analyses below are based on the randomized dataset.
+Thus, we got a another set of data with pH values measured in a randomized order produced by chemists. The experiments and analyses below are based on the randomized dataset.
 \subsection{Raw Data}
-As for the raw data, I plot 5 replications in 1 plot for each pH values as shown in figure \ref{pic2}.
+As for the raw data, we plot the 5 replications in one plot for each pH values as shown in Figure \ref{pic2}.
 \begin{figure}[h]
 \centering
 \begin{tabular}{ccc}
@@ -82,9 +82,9 @@ As for the raw data, I plot 5 replications in 1 plot for each pH values as shown
 
 We can find that when the pH value is increasing, not like in the previous dataset, the peak isn't lower and lower as the pH value is increasing all the time.
 
-Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value.  Suggested by chemists, normalization is a good way to avoid such system error. And the method we used is normalizing the total area under the curve.
+Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value. Suggested by chemists, normalization is a good way to avoid such variation. The method we used is normalizing the total area under the curve.
 \subsection{Normalization}
-As mentioned in previous section, I have normalized the total area under the curve for every spectrum as shown in figure \ref{pic3}.
+As mentioned in previous section, I have normalized the total area under the curve for every spectrum as shown in Figure \ref{pic3}.
 \begin{figure}[h]
 \centering
 \begin{tabular}{ccc}
@@ -104,31 +104,31 @@ As mentioned in previous section, I have normalized the total area under the cur
 \caption{Plots for each pH values of data after normalization}\label{pic3}
 \end{figure}
 
-As we can see from the figure that the normalization does eliminate the differences among samples of the same pH values.
+As we can see from the figure that the normalization does eliminate the differences among samples of the same pH value.
 \section{Methods}
 There are only 60 samples. Since the number of sample is very small, we'll use cross validation to judge which method is better.
 
 For cross validation, we divide samples into 5 folds. For each fold, there are not two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE) for evaluation. 
 \begin{equation}
-\mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle n \sum_{i=1}^n (y_i-\overline{y})^2}
+\mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2}
 \end{equation}
 \subsection{Linear Regression}
 The basic method of regression is linear regression. The simplest linear model is one that involves a linear combination of the spectrum
 \begin{equation}
-y(\bfx,\bfv)=v_0+v_1x_1\ldots+v_Dx_D
+f(\bfx,\bfv)=v_0+v_1x_1\ldots+v_Dx_D,
 \end{equation}
 where $\bfx=(x_1,\ldots,x_D)^T$ and here $D$ is 1044 in our dataset. The key property of this model is that it is a linear function of the parameter $v_0,v_1,\ldots,v_D$. 
 
 However, it may be not possible for all the points representing all the spectra in the training data to be all on the same plane. So what we're going to do is to minimize
 \begin{equation}
-J(\bfv)=\sum_{i=1}^m (y(\bfx,\bfv)^{(i)}-\mathrm{pH}^{(i)})^2
+J(\bfv)=\sum_{i=1}^m (f(x_i,\bfv)-y_i)^2,
 \end{equation}
-which minimize the total difference between the predict pH value and the observed pH value. This leads to a closed-form expression for the estimated value as shown below.
+which minimizes the total difference between the predicted pH value and the observed pH value. This leads to a closed-form expression for the estimated value as shown below.
 \begin{equation}
-\hat{\bfv}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{\mathrm{pH}}
+\hat{\bfv}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}.
 \end{equation}
 
-As the dimension of the spectrum is 1044 dimensions and the number of samples is only 60. So it's not possible to directly use the method mentioned above and there are 2 methods mentioned below which can handle this situation.
+As the dimension of the spectrum is 1044 dimensions and the number of samples is only 60, it's not possible to directly use the method mentioned above, and there are two methods mentioned below which can handle this situation.
 \subsubsection{Principal Component Regression}
 Principal component regression (PCR) is a regression analysis technique that is based on principal component analysis (PCA). 
 
@@ -138,25 +138,25 @@ Using the PCA first can make the dimension of spectrum less than 60, and then we
 \subsubsection{Partial Least Squares Regression}
 Partial least squares regression (PLSR) is a statistical method that bears some relation to principal components regression. Instead of finding hyperplanes of minimum variance between the response and independent variables, it finds a linear regression model by projecting the predicted variables and the observable variables to a new space.
 
-For PLS considers not only the spectra but also the pH values corresponding to them, PLSR has better performance in a lot of cases than PCR.
+As PLS considers not only the spectra but also the pH values corresponding to them, PLSR has better performance in a lot of cases than PCR.
 \subsection{Lasso Regression}
 Lasso regression is a regularized version of linear regression which can avoid over-fitting. It minimizes
 \begin{equation}
-J(\bfv)=\sum_{i=1}^m (y(\bfx,\bfv)^{(i)}-\mathrm{pH}^{(i)})^2+\alpha ||\bfv||
+J(\bfv)=\sum_{i=1}^m (y(\bfx,\bfv)^{(i)}-\mathrm{pH}^{(i)})^2+\alpha ||\bfv||.
 \end{equation}
-Here, $\alpha$ is an important parameter to control the intensity of regularization. Large $\alpha$ is, more numbers of values in $\bfv$ will be equal to 0 or nearly 0.
+Here, $\alpha$ is an important parameter to control the intensity of regularization. The larger $\alpha$ is, more numbers of values in $\bfv$ will be equal to 0 or nearly 0.
 \subsection{Kernel Regression}
 Kernel regression is quite a different method from the methods mentioned above.
 
-Before introducing it, we'll introduce a method for classification called $k$-NN. In this method, for every new sample to be classified, we choose first $k$ nearest samples for it and count which class most of the samples belong to. Normally, we choose Euclid distance to calculate nearest samples.
+Before introducing it, we'll introduce a method for classification called $k$-NN. In this method, for every new sample to be classified, we choose first $k$ nearest samples for it and count which class most of the samples belong to. Normally, we choose Euclidean distance to calculate nearest samples.
 
-And for regression, we cannot only count. We should combine the pH values of its neighbours together. And here, we use Gaussian kernel for the weight of each pH values, and we can then predict the value of data in testing set.
+And for regression, we cannot only count. We should combine the pH values of its neighbours together. And here, we use Gaussian kernel for the weight of each pH values, and we can then predict the pH value of data in testing set.
 
 \section{Results}
 \subsection{Principal Component Regression}
 As for PCR, we only consider the result on the data after normalization. 
 
-We can see the result predicted by PCR in figure \ref{pic4}. And the SMSE is 0.008401.
+We can see the result predicted by PCR in Figure \ref{pic4}. And the SMSE is 0.008401.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -164,7 +164,7 @@ We can see the result predicted by PCR in figure \ref{pic4}. And the SMSE is 0.0
   \caption{PCR with 10 principal components}\label{pic4}
 \end{figure}
 
-The virtualization of linear regression parameter $\bfv$ is shown in figure \ref{pic5}.
+The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{pic5}.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -175,7 +175,7 @@ The virtualization of linear regression parameter $\bfv$ is shown in figure \ref
 \subsection{Partial Least Squares Regression}
 As we expected, this method has better performance than PCR, with SMSE 0.007519. 
 
-The result predicted by PLSR is shown in figure \ref{pic6}.
+The result predicted by PLSR is shown in Figure \ref{pic6}.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -183,7 +183,7 @@ The result predicted by PLSR is shown in figure \ref{pic6}.
   \caption{PLSR with 14 principal components}\label{pic6}
 \end{figure}
 
-The virtualization of linear regression parameter $\bfv$ is shown in figure \ref{pic7}.
+The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{pic7}.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -192,14 +192,6 @@ The virtualization of linear regression parameter $\bfv$ is shown in figure \ref
 \end{figure}
 
 As we can see, the curve is not that smooth like that of $\bfv$ for PCR and thus it's not easy for further analysis on it. So we try lasso regression in the next section to make the curve smoother.
-
-\subsection{Lasso Regression}
-\begin{figure}[h]
-  \centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=.6\textwidth]{images/pred_lasso0007smse002396.pdf}\\
-  \caption{Plot of mean of $\bfv$ for PLSR with 14 components}\label{pic7}
-\end{figure}
 
 \section{Conclusions}
 

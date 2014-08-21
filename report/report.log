@@ -1,7 +1,7 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2014.5.29)  14 AUG 2014 13:56
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2014.5.29)  21 AUG 2014 13:00
 entering extended mode
  %&-line parsing enabled.
-**report.tex
+**report
 (./report.tex
 LaTeX2e <2005/12/01>
 Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
@@ -468,47 +468,45 @@ File: images/predpcr10smse008401.pdf Graphic file (type pdf)
 <images/v_pcrnormcmp10smse008401.pdf, id=254, 449.68pt x 338.26375pt>
 File: images/v_pcrnormcmp10smse008401.pdf Graphic file (type pdf)
 
-<use images/v_pcrnormcmp10smse008401.pdf> [5 <./images/predpcr10smse008401.pdf>
- <./images/v_pcrnormcmp10smse008401.pdf>]
-<images/pred_plsrnormcmp14smse007519.pdf, id=271, 449.68pt x 338.26375pt>
-File: images/pred_plsrnormcmp14smse007519.pdf Graphic file (type pdf)
-
-<use images/pred_plsrnormcmp14smse007519.pdf>
-<images/v_plsrnormcmp14smse007519.pdf, id=273, 449.68pt x 338.26375pt>
-File: images/v_plsrnormcmp14smse007519.pdf Graphic file (type pdf)
-
-<use images/v_plsrnormcmp14smse007519.pdf>
-<images/pred_lasso0007smse002396.pdf, id=274, 449.68pt x 338.26375pt>
-File: images/pred_lasso0007smse002396.pdf Graphic file (type pdf)
-
-<use images/pred_lasso0007smse002396.pdf>
+<use images/v_pcrnormcmp10smse008401.pdf>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6 <./images/pred_plsrnormcmp14smse007519.pdf> <./images/v_plsrnormcmp14smse007
-519.pdf>] [7 <./images/pred_lasso0007smse002396.pdf>] (./report.aux)
+<images/pred_plsrnormcmp14smse007519.pdf, id=256, 449.68pt x 338.26375pt>
+File: images/pred_plsrnormcmp14smse007519.pdf Graphic file (type pdf)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+<use images/pred_plsrnormcmp14smse007519.pdf>
 
- ) 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/v_plsrnormcmp14smse007519.pdf, id=258, 449.68pt x 338.26375pt>
+File: images/v_plsrnormcmp14smse007519.pdf Graphic file (type pdf)
+
+<use images/v_plsrnormcmp14smse007519.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./images/predpcr10smse008401.pdf>] [6 <./images/v_pcrnormcmp10smse008401.pd
+f> <./images/pred_plsrnormcmp14smse007519.pdf> <./images/v_plsrnormcmp14smse007
+519.pdf>] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 5969 strings out of 256216
- 80427 string characters out of 1917072
+ 5958 strings out of 256216
+ 80159 string characters out of 1917072
  149045 words of memory out of 1500000
- 9125 multiletter control sequences out of 10000+200000
+ 9118 multiletter control sequences out of 10000+200000
  12438 words of font info for 48 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 27i,13n,36p,582b,339s stack positions out of 5000i,500n,6000p,200000b,15000s
-</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/share/texmf/fonts/t
-ype1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmex10.pfb>
-</usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/share/texmf/fonts/typ
-e1/bluesky/cm/cmmi7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></us
-r/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bl
-uesky/cm/cmr7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/sha
-re/texmf/fonts/type1/bluesky/cm/cmsy7.pfb>
-Output written on report.pdf (7 pages, 657836 bytes).
+ 27i,13n,36p,578b,339s stack positions out of 5000i,500n,6000p,200000b,15000s
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb><
+/usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type
+1/bluesky/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></u
+sr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/share/texmf/fonts/type1/b
+luesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/sh
+are/texmf/fonts/type1/bluesky/cm/cmr7.pfb></usr/share/texmf/fonts/type1/bluesky
+/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy7.pfb>
+Output written on report.pdf (6 pages, 651066 bytes).
 PDF statistics:
- 342 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 131072)
- 279 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 329 PDF objects out of 1000 (max. 8388607)
+ 33 named destinations out of 1000 (max. 131072)
+ 274 words of extra memory for PDF output out of 10000 (max. 10000000)
 
