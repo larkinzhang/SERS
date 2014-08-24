@@ -1,0 +1,6 @@
+nu-SVR linear kernel 0.092098
+epsilon-SVR linear kernel 0.100582
+
+PCR with 10 components 0.100806
+PLSR with 14 components 0.082091
+
