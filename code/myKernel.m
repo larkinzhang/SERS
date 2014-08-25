@@ -14,6 +14,9 @@ X = X';
 sumup = sum(X,2);
 X = bsxfun(@rdivide,X,sumup);
 
+[PCALoadings,PCAScores] = pca(X);
+X = X * PCALoadings(:,1:9);
+
 %% Evaluation
 % Divide dataset into training set and testing set and evaluate the model.
 load index;
