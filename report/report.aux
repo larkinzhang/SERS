@@ -1,42 +1,66 @@
 \relax 
-\ifx\hyper@anchor\@undefined
-\global \let \oldcontentsline\contentsline
-\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
-\global \let \oldnewlabel\newlabel
-\gdef \newlabel#1#2{\newlabelxx{#1}#2}
-\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
-\AtEndDocument{\let \contentsline\oldcontentsline
-\let \newlabel\oldnewlabel}
-\else
-\global \let \hyper@last\relax 
-\fi
-
-\bibstyle{plain}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand*\HyPL@Entry[1]{}
+\bibstyle{unsrt}
+\HyPL@Entry{0<</S/D>>}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Data}{1}{section.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The mean spectrum for different pH values in the first dataset}}{1}{figure.1}}
-\newlabel{pic1}{{1}{1}{The mean spectrum for different pH values in the first dataset\relax }{figure.1}{}}
+\newlabel{pic1}{{1}{1}{The mean spectrum for different pH values in the first dataset}{figure.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Raw Data}{2}{subsection.2.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Plots for each pH values of raw data}}{2}{figure.2}}
-\newlabel{pic2}{{2}{2}{Plots for each pH values of raw data\relax }{figure.2}{}}
+\newlabel{pic2}{{2}{2}{Plots for each pH values of raw data}{figure.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Normalization}{2}{subsection.2.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Plots for each pH values of data after normalization}}{3}{figure.3}}
-\newlabel{pic3}{{3}{3}{Plots for each pH values of data after normalization\relax }{figure.3}{}}
+\newlabel{pic3}{{3}{3}{Plots for each pH values of data after normalization}{figure.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{3}{section.3}}
+\citation{jolliffe2005principal}
+\citation{geladi1986partial}
+\citation{tibshirani1996regression}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Linear Regression}{4}{subsection.3.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Principal Component Regression}{4}{subsubsection.3.1.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Partial Least Squares Regression}{4}{subsubsection.3.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Lasso Regression}{4}{subsection.3.2}}
+\citation{rasmussen2006gaussian}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Lasso Regression}{5}{subsection.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Kernel Regression}{5}{subsection.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Gaussian Process Regression}{5}{subsection.3.4}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results}{5}{section.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Principal Component Regression}{5}{subsection.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces PCR with 10 principal components}}{5}{figure.4}}
-\newlabel{pic4}{{4}{5}{PCR with 10 principal components\relax }{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Partial Least Squares Regression}{5}{subsection.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusions}{5}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Lasso Regression}{5}{subsection.4.3}}
+\bibdata{report}
+\bibcite{jolliffe2005principal}{{1}{}{{}}{{}}}
+\bibcite{geladi1986partial}{{2}{}{{}}{{}}}
+\bibcite{tibshirani1996regression}{{3}{}{{}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces PCR with 10 principal components}}{6}{figure.4}}
+\newlabel{pic4}{{4}{6}{PCR with 10 principal components}{figure.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Plot of mean of $\mathbf  {v}$ for PCR with 10 components}}{6}{figure.5}}
-\newlabel{pic5}{{5}{6}{Plot of mean of $\bfv $ for PCR with 10 components\relax }{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces PLSR with 14 principal components}}{6}{figure.6}}
-\newlabel{pic6}{{6}{6}{PLSR with 14 principal components\relax }{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Plot of mean of $\mathbf  {v}$ for PLSR with 14 components}}{6}{figure.7}}
-\newlabel{pic7}{{7}{6}{Plot of mean of $\bfv $ for PLSR with 14 components\relax }{figure.7}{}}
+\newlabel{pic5}{{5}{6}{Plot of mean of $\bfv $ for PCR with 10 components}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Kernel Regression}{6}{subsection.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Gaussian Process Regression}{6}{subsection.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusions}{6}{section.5}}
+\bibcite{cortes1995support}{{4}{}{{}}{{}}}
+\bibcite{drucker1997support}{{5}{}{{}}{{}}}
+\bibcite{rasmussen2006gaussian}{{6}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces PLSR with 14 principal components}}{7}{figure.6}}
+\newlabel{pic6}{{6}{7}{PLSR with 14 principal components}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Plot of mean of $\mathbf  {v}$ for PLSR with 14 components}}{7}{figure.7}}
+\newlabel{pic7}{{7}{7}{Plot of mean of $\bfv $ for PLSR with 14 components}{figure.7}{}}
+\@writefile{toc}{\contentsline {section}{Reference}{7}{section*.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The relationship between SMSE and $\alpha $}}{8}{figure.8}}
+\newlabel{pic8}{{8}{8}{The relationship between SMSE and $\alpha $}{figure.8}{}}
