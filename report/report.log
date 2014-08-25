@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2014.4.11)  25 AUG 2014 19:38
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2014.4.11)  25 AUG 2014 20:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -105,6 +105,38 @@ Package hyperref Info: Option `unicode' set `true' on input line 4319.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2012/11/06 v6.83m Hyperref: PDF Unicode definition (HO)
 )
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unhbox' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\voidb@x' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unhbox' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\voidb@x' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unhbox' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\voidb@x' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unhbox' on input line 4319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\voidb@x' on input line 4319.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\unhbox' on input line 4319.
@@ -508,51 +540,51 @@ Overfull \hbox (31.7344pt too wide) in paragraph at lines 90--104
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] [3] [4]
+[2] [3] [4] [5]
+File: images/explain_PCR.pdf Graphic file (type QTm)
+ <use  "images/explain_PCR.pdf" >
+File: images/gsearch_PCR.pdf Graphic file (type QTm)
+
+<use  "images/gsearch_PCR.pdf" > [6]
 File: images/predict_PCR.pdf Graphic file (type QTm)
  <use  "images/predict_PCR.pdf" >
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 File: images/v_PCR.pdf Graphic file (type QTm)
-<use  "images/v_PCR.pdf" >
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<use  "images/v_PCR.pdf" > [7]
+File: images/explain_PLSR.pdf Graphic file (type QTm)
+ <use  "images/explain_PLSR.pdf" >
+File: images/gsearch_PLSR.pdf Graphic file (type QTm)
 
+<use  "images/gsearch_PLSR.pdf" > [8]
 File: images/predict_PLSR.pdf Graphic file (type QTm)
-<use  "images/predict_PLSR.pdf" >
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+ <use  "images/predict_PLSR.pdf" >
 File: images/v_PLSR.pdf Graphic file (type QTm)
+
 <use  "images/v_PLSR.pdf" >
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 File: images/lasso.pdf Graphic file (type QTm)
-<use  "images/lasso.pdf" >
+ <use  "images/lasso.pdf" >
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5] [6] [7]
+[9] [10]
 File: images/predict_GP09.pdf Graphic file (type QTm)
- <use  "images/predict_GP09.pdf" > (./report.bbl [8])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 296.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 296.
+ <use  "images/predict_GP09.pdf" > (./report.bbl [11])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 338.
+ [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 338.
 
 (./report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 296.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 296.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 296.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 338.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 338.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 338.
  ) 
 Here is how much of TeX's memory you used:
- 11305 strings out of 493918
- 155560 string characters out of 6148599
- 242039 words of memory out of 5000000
- 14522 multiletter control sequences out of 15000+600000
+ 11317 strings out of 493918
+ 155742 string characters out of 6148599
+ 242440 words of memory out of 5000000
+ 14530 multiletter control sequences out of 15000+600000
  13135 words of font info for 50 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 29i,13n,35p,582b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,13n,35p,582b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.pdf (9 pages).
+Output written on report.pdf (12 pages).

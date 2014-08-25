@@ -1,6 +1,6 @@
 \documentclass[a4paper]{article}
 
-\usepackage[pdfauthor=Zhang~Yichi]{hyperref}
+\usepackage[pdfauthor=Zhang~Yichi,pdftitle=Predicting~pH~from~SERS~Data]{hyperref}
 \usepackage{amsmath,amsfonts,amsthm}
 \usepackage{longtable}
 \usepackage{graphicx}
@@ -108,16 +108,17 @@ As we can see from the figure that the normalization does eliminate the differen
 \section{Methods}
 There are only 60 samples. Since the number of sample is very small, we'll use cross validation to judge which method is better.
 
-For cross validation, we divide samples into 5 folds. For each fold, there are not two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE), mean absolute error (MAE) and coefficient of determination ($R^2$) for evaluation. 
+For cross validation, we divide samples into 5 folds. For each fold, there are not two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE)%, mean absolute error (MAE) and coefficient of determination ($R^2$) for evaluation. 
 \begin{equation}
-\mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2}
+\mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2}.
 \end{equation}
-\begin{equation}
-\mathrm{MAE}=\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y_i}|
-\end{equation}
-\begin{equation}
-R^2=1-\frac{\displaystyle \sum_{i=1}^n (y_i - \hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i - \bar{y})^2}=1-\mathrm{SMSE}
-\end{equation}
+%\begin{equation}
+%\mathrm{MAE}=\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y_i}|
+%\end{equation}
+%\begin{equation}
+%R^2=1-\frac{\displaystyle \sum_{i=1}^n (y_i - \hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i - \bar{y})^2}=1-\mathrm{SMSE}
+%\end{equation}
+Here, $y_i$ represents the actual pH values of spectra in testing set, and $\bar{y}$ is mean of $y_i$. And $\hat{y_i}$ is the predict pH values of spectra in testing set. At last, $n$ is the size of testing set.
 \subsection{Linear Regression}
 The basic method of regression is linear regression. The simplest linear model is one that involves a linear combination of the spectrum
 \begin{equation}
@@ -170,11 +171,29 @@ Gaussian process \cite{rasmussen2006gaussian} is a stochastic process whose real
 
 Gaussian process regression is a very good way for regression. Not like the traditional linear regression, it is not related to some specific models, but can represent $f(\bfx)$ obliquely.
 
+\newpage
 \section{Results}
 \subsection{Principal Component Regression}
-As for PCR, we only consider the result on the data after normalization. 
+To use PCR to do regression work, the first problem needed to be solved is determining how many principal components should be used. Before solving this problem, we can see the percent variance explained by the corresponding principal component in Figure \ref{pcrb1}.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/explain_PCR.pdf}\\
+  \caption{The percent variance explained by the corresponding principal component}\label{pcrb1}
+\end{figure}
 
-We can see the result predicted by PCR in Figure \ref{pic4}. And the SMSE is 0.098476.
+We can see in the figure that when the number of principal components is greater than 3, the percent is greater than 95\%. It is really enough to keep the feature of the dataset using only 3 principal components.
+
+And to find the smallest SMSE, we choose to use the grid search. The result of grid search is shown in Figure \ref{pcrb2}.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/gsearch_PCR.pdf}\\
+  \caption{The result of grid search}\label{pcrb2}
+\end{figure}
+
+\newpage
+We can find that the SMSE is smallest when the number of principal components is equal to 9. The result predicted by PCR with 9 principal components is shown in Figure \ref{pic4}. And the SMSE is 0.098476.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -190,8 +209,30 @@ The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{
   \caption{Plot of mean of $\bfv$ for PCR with 9 components}\label{pic5}
 \end{figure}
 
+\newpage
 \subsection{Partial Least Squares Regression}
-As we expected, this method has better performance than PCR, with SMSE 0.082091. 
+For PLSR, we also only consider the result on the data after normalization. 
+
+It's the same with PLSR that the first problem needed to be solved is determining how many principal components should be used. We can also see the percent variance explained by the corresponding principal component in Figure \ref{plsrb1}.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/explain_PLSR.pdf}\\
+  \caption{The percent variance explained by the corresponding principal component}\label{plsrb1}
+\end{figure}
+
+We can see in the figure that when the number of principal components is greater than 4, the percent is greater than 95\%. It is really enough to keep the feature of the dataset using only 4 principal components.
+
+And we use the same method, grid search, to find the smallest SMSE. The result of grid search is shown in Figure \ref{plsrb2}.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/gsearch_PLSR.pdf}\\
+  \caption{The result of grid search}\label{plsrb2}
+\end{figure}
+
+\newpage
+We can find that the SMSE is smallest when the number of principal components is equal to 14. As we expected, this method has better performance than PCR, with SMSE 0.082091. 
 
 The result predicted by PLSR is shown in Figure \ref{pic6}.
 \begin{figure}[h]
@@ -226,6 +267,9 @@ As we can see in the figure, both the SMSE of PCR and PLSR are increasing. That 
 
 Moreover, we can find that the SMSE of PLSR increases much faster than that of PCR. As we know from the visualization of $\bfv$ shown before, the curve of $\bfv$ for PCR is much smoother than that of PLSR, so the $\alpha ||\bfv||$ part of the cost function may not affect the performance of PCR that much as $\alpha$ is increasing.
 \subsection{Kernel Regression}
+To find the best $\alpha$ in kernel regression, we also use grid search to determine which $\sigma$ should be chosen in Gaussian kernel.
+
+Unfortunately, the performances are very poor no matter which $\sigma$ is chosen. When I try support vector regression with rbf kernel on the dataset, the performance is also very poor. The linear kernel, however, has a very good performance on this dataset. That may mean non-linear regression model  may not fit the data in this dataset.
 
 \subsection{Gaussian Process Regression}
 To use Gaussian process, we should determine two functions first, that is mean function and covariance function. And to do regression work, we should also determine which likelihood function is used. And inference method is also needed to find hyperparameters.
@@ -288,8 +332,6 @@ The result predicted by GP10 which has the best SMSE is shown in Figure \ref{pic
   \includegraphics[width=.6\textwidth]{images/predict_GP09.pdf}\\
   \caption{Result of Gaussian process with the best SMSE}\label{pic9}
 \end{figure}
-
-\section{Conclusions}
 
 
 \bibliography{report}\addcontentsline{toc}{section}{Reference}
