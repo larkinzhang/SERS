@@ -56,12 +56,12 @@ pause;
 % Divide dataset into training set and testing set and evaluate the model.
 load index;
 
-compcnt = 12;
+compcnt = 30;
 v = zeros(compcnt*nreps, featurenum);
+tot = zeros(compcnt, 1);
 
 for k = 1:compcnt
-    tot = 0;
-    figure('name', num2str(2*k, 'PCR with %d Components'));
+    figure('name', num2str(k, 'PCR with %d Components'));
     hold on;
     
     
@@ -73,8 +73,8 @@ for k = 1:compcnt
         pHtest = pH(test);
 
         [PCALoadings,PCAScores,PCAVar,TSQUARED,EXPLAINED] = pca(Xtrain);
-        betaPCR = regress(pHtrain - mean(pHtrain), PCAScores(:,1:2*k));
-        betaPCR = PCALoadings(:,1:2*k) * betaPCR;
+        betaPCR = regress(pHtrain - mean(pHtrain), PCAScores(:,1:k));
+        betaPCR = PCALoadings(:,1:k) * betaPCR;
                
         v((k-1)*nreps+i, :) = betaPCR';
         
@@ -85,14 +85,14 @@ for k = 1:compcnt
         ylabel('Fitted Response');
 
         SMSE = (sum((yfitPCR - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
-        tot = tot + SMSE;
+        tot(k) = tot(k) + SMSE;
     end
     lx = [min(pHtest) max(pHtest)];
     ly = lx;
     plot(lx, ly);
     hold off;
 
-    fprintf('The average of SMSE with %d components is %f\n', 2*k, tot / nreps);
+    fprintf('The average of SMSE with %d components is %f\n', k, tot(k) / nreps);
 end
 
 figure('name', 'Figure for v');

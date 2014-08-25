@@ -1,7 +1,7 @@
 nu-SVR linear kernel 0.092098
 epsilon-SVR linear kernel 0.100582
 
-PCR with 10 components 0.100806
+PCR with 9 components 0.098476
 PLSR with 14 components 0.082091
 
 GP01 covSEiso infExact 0.085254
@@ -13,5 +13,9 @@ GP06 covSeiso infLOO 0.089122
 
 GP07 covSEiso likLaplace infEP 0.085788
 
+GP10 covMaterniso5 infExact 0.086177
 GP08 covMaterniso5 infEP 0.084075
+GP11 covMaterniso5 infLaplace 0.083821
 GP09 covMaterniso5 infVB 0.083809
+GP12 covMaterniso5 infKL 0.084479 
+GP13 covMaterniso5 infLOO 0.089021

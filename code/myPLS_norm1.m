@@ -54,13 +54,13 @@ pause;
 fprintf('Divide dataset into train set and test set and evaluate the model.\n\n');
 load index;
 
-compcnt = 15;
+compcnt = 30;
 v = zeros(compcnt*nreps, featurenum);
+tot = zeros(compcnt, 1);
 
 for k = 1:compcnt
-    tot = 0;
     
-    figure('name', num2str(2*k, 'PLSR with %d Components'));
+    figure('name', num2str(k, 'PLSR with %d Components'));
     hold on;
 
 	for i = 1:nreps
@@ -70,9 +70,9 @@ for k = 1:compcnt
         Xtest = X(test,:);
         pHtest = pH(test);
    
-        [Xloadings,Yloadings,Xscores,Yscores,~,PLSPctVar] = plsregress(Xtrain,pHtrain,2*k);
-        betaPLS = regress(pHtrain - mean(pHtrain), Xtrain * Xloadings(:,1:2*k));
-        betaPLS = Xloadings(:,1:2*k) * betaPLS;
+        [Xloadings,Yloadings,Xscores,Yscores,~,PLSPctVar] = plsregress(Xtrain,pHtrain,k);
+        betaPLS = regress(pHtrain - mean(pHtrain), Xtrain * Xloadings(:,1:k));
+        betaPLS = Xloadings(:,1:k) * betaPLS;
         
         v((k-1)*nreps+i, :) = betaPLS';
         
@@ -83,14 +83,14 @@ for k = 1:compcnt
         ylabel('Fitted Response');
     
         SMSE = (sum((yfitPLS - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
-        tot = tot + SMSE;
+        tot(k) = tot(k) + SMSE;
     end
     lx = [min(pHtest) max(pHtest)];
     ly = lx;
     plot(lx, ly);
     hold off;
 
-    fprintf('The average of SMSE with %d components is %f\n', 2*k, tot / nreps);
+    fprintf('The average of SMSE with %d components is %f\n', k, tot(k) / nreps);
 end
 
 figure('name', 'figure for v');

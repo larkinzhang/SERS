@@ -60,13 +60,13 @@ for i = 1:nreps
         pHtest = pH(test);
 
         [PCALoadings,PCAScores] = pca(Xtrain);
-        B = lasso(PCAScores(:,1:10),pHtrain - mean(pHtrain),'Lambda',lambda);
+        B = lasso(PCAScores(:,1:9),pHtrain - mean(pHtrain),'Lambda',lambda);
    
         for k = 1:lambdacnt
 %            figure(fhandle(k));
 %            hold on;
             betaLasso = B(:,k);
-            betaLasso = PCALoadings(:,1:10) * betaLasso;
+            betaLasso = PCALoadings(:,1:9) * betaLasso;
             
             v((k-1)*nreps+i,:) = betaLasso;
         
