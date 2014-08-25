@@ -16,17 +16,10 @@ Robert Tibshirani.
 \newblock {\em Journal of the Royal Statistical Society. Series B
   (Methodological)}, pages 267--288, 1996.
 
-\bibitem{cortes1995support}
-Corinna Cortes and Vladimir Vapnik.
-\newblock Support-vector networks.
-\newblock {\em Machine learning}, 20(3):273--297, 1995.
-
-\bibitem{drucker1997support}
-Harris Drucker, Chris~JC Burges, Linda Kaufman, Alex Smola, and Vladimir
-  Vapnik.
-\newblock Support vector regression machines.
-\newblock {\em Advances in neural information processing systems}, 9:155--161,
-  1997.
+\bibitem{nadaraya1964estimating}
+Elizbar~A Nadaraya.
+\newblock On estimating regression.
+\newblock {\em Theory of Probability \& Its Applications}, 9(1):141--142, 1964.
 
 \bibitem{rasmussen2006gaussian}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.

@@ -82,7 +82,7 @@ As for the raw data, we plot the 5 replications in one plot for each pH values a
 
 We can find that when the pH value is increasing, not like in the previous dataset, the peak isn't lower and lower as the pH value is increasing all the time.
 
-Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value. Suggested by chemists, normalization is a good way to avoid such variation. The method we used is normalizing the total area under the curve.
+Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value due to the systematic loss of nanoparticles. Suggested by chemists, normalization is a good way to avoid such variation. The method we used is normalizing the total area under the curve.
 \subsection{Normalization}
 As mentioned in previous section, I have normalized the total area under the curve for every spectrum as shown in Figure \ref{pic3}.
 \begin{figure}[h]
@@ -152,7 +152,7 @@ J(\bfv)=\sum_{i=1}^m (f(\bfx_i,\bfv)-y_i)^2+\alpha ||\bfv||.
 \end{equation}
 Here, $\alpha$ is an important parameter to control the intensity of regularization. The larger $\alpha$ is, more numbers of values in vector $\bfv$ will be equal to 0 or nearly 0.
 \subsection{Kernel Regression}
-Kernel regression is quite a different method from the methods mentioned above.
+Kernel regression \cite{nadaraya1964estimating} is quite a different method from the methods mentioned above.
 
 Before introducing it, we'll introduce a method for classification called $k$-NN. In this method, for every new sample to be classified, we choose first $k$ nearest samples for it and count which class most of the samples belong to. Normally, we choose Euclidean distance to calculate nearest samples.
 
@@ -166,18 +166,20 @@ Here, $\bfx$ represents current spectrum and $\bfx_i$ represents the $i$-th spec
 %Support vector machines (SVM) \cite{cortes1995support} are supervised learning models with associated learning algorithms that analyze data and recognize patterns, used for classification and regression analysis. The original version of SVM is only able to do classification work, while later improvement \cite{drucker1997support} make it also be able to do regression work.
  
 \subsection{Gaussian Process Regression}
-Gaussian process regression \cite{rasmussen2006gaussian}
+Gaussian process \cite{rasmussen2006gaussian} is a stochastic process whose realizations consist of random values associated with every point in a range of space such that each such random variable has a normal distribution. 
+
+Gaussian process regression is a very good way for regression. Not like the traditional linear regression, it is not related to some specific models, but can represent $f(\bfx)$ obliquely.
 
 \section{Results}
 \subsection{Principal Component Regression}
 As for PCR, we only consider the result on the data after normalization. 
 
-We can see the result predicted by PCR in Figure \ref{pic4}. And the SMSE is 0.100806.
+We can see the result predicted by PCR in Figure \ref{pic4}. And the SMSE is 0.098476.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=.6\textwidth]{images/predict_PCR.pdf}\\
-  \caption{PCR with 10 principal components}\label{pic4}
+  \caption{PCR with 9 principal components}\label{pic4}
 \end{figure}
 
 The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{pic5}.
@@ -185,7 +187,7 @@ The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{
   \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=.6\textwidth]{images/v_PCR.pdf}\\
-  \caption{Plot of mean of $\bfv$ for PCR with 10 components}\label{pic5}
+  \caption{Plot of mean of $\bfv$ for PCR with 9 components}\label{pic5}
 \end{figure}
 
 \subsection{Partial Least Squares Regression}
@@ -218,14 +220,77 @@ To make the curve smoother for further analysis and avoid the potential over-fit
   \caption{The relationship between SMSE and $\alpha$}\label{pic8}
 \end{figure}
 
-Figure \ref{pic8} shows the change of SMSE as the parameter $\alpha$ of lasso regression is increasing. As we can see in the figure, both the SMSE of PCR and PLSR are increasing. That means there are no over-fitting in the two regression methods before, and smoothing the curve of $\bfv$ is not a good way to improve the performance of those methods.
+Figure \ref{pic8} shows the change of SMSE as the parameter $\alpha$ of lasso regression is increasing. 
+
+As we can see in the figure, both the SMSE of PCR and PLSR are increasing. That means there are no over-fitting in the two regression methods before, and smoothing the curve of $\bfv$ is not a good way to improve the performance of those methods.
 
 Moreover, we can find that the SMSE of PLSR increases much faster than that of PCR. As we know from the visualization of $\bfv$ shown before, the curve of $\bfv$ for PCR is much smoother than that of PLSR, so the $\alpha ||\bfv||$ part of the cost function may not affect the performance of PCR that much as $\alpha$ is increasing.
 \subsection{Kernel Regression}
 
 \subsection{Gaussian Process Regression}
+To use Gaussian process, we should determine two functions first, that is mean function and covariance function. And to do regression work, we should also determine which likelihood function is used. And inference method is also needed to find hyperparameters.
+
+From the previous sections, we know that a linear mean function like
+\begin{equation}
+m(\bfx)=\sum_{i=1}^n a_ix_i + a_0
+\end{equation}
+is more suitable for our dataset, so this function is the only mean function we have chosen for later experiments.
+
+As for covariance function, two functions have been chosen for experiments. The first one is squared exponential covariance function
+\begin{equation}
+k(\bfx_p,\bfx_q)=\sigma_0^2\exp\Big[-\frac{(\bfx_p-\bfx_q)'\times P^{-1} \times (\bfx_p-\bfx_q)}{2}\Big].
+\end{equation}
+Here, $P$ is equal to $\lambda$ times the unit matrix. And both $\sigma_0$ and $\lambda$ are hyperparameters. The second one is Matern covariance function
+\begin{equation}
+k(\bfx_p,\bfx_q)=\sigma_0^2\times f(\sqrt{d}r)\times \exp(-\sqrt{d}r).
+\end{equation}
+Here, $d$ is set to be 5 in our experiments, and function $f$ is set to be $f(t)=\frac{1+t+t^2}{3}$. And $r$ is the distance $\sqrt{(\bfx_p-\bfx_q)'\times P^{-1} \times (\bfx_p-\bfx_q)}$, while $P$ is the same matrix as above. So it's the same that both $\sigma_0$ and $\lambda$ are hyperparameters.
+
+And since we're going to do regression work, we choose the traditional Gaussian function for likelihood function
+\begin{equation}
+f(x)=\frac{1}{\sigma\sqrt{2\pi}} \exp\Big[ -\frac{(x-\mu)^2}{2\sigma^2} \Big].
+\end{equation}
+Here, $\mu$ is the mean and $\sigma$ is the standard deviation. And only the standard deviation is in the hyperparameters.
+
+And we have choose some different inference methods to get optimized hyperparameters. Table \ref{table1} shows the result for squared exponential covariance function, while Table \ref{table2} shows the result for Matern covariance function. Note that the two tables of results produced by experiments with the same mean function and likelihood function.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{No.} & GP01 & GP02 & GP03 & GP04 & GP05 & GP06 \\
+\hline
+\textbf{Method} & infExact & infEP & infLaplace & infVB & infKL & infLOO \\
+\hline
+\textbf{SMSE} & 0.085254 & 0.084868 & 0.085691 & 0.084877 & 0.085814 & 0.089122 \\
+\hline
+\end{tabular}
+\caption{Result for squared exponential covariance function}\label{table1}
+\end{table}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{No.} & GP07 & GP08 & GP09 & GP10 & GP11 & GP12 \\
+\hline
+\textbf{Method} & infExact & infEP & infLaplace & infVB & infKL & infLOO \\
+\hline
+\textbf{SMSE} & 0.086177 & 0.084075 & 0.083821 & 0.083809 & 0.084479 & 0.089021 \\
+\hline
+\end{tabular}
+\caption{Result for Matern covariance function}\label{table2}
+\end{table}
+
+The result predicted by GP10 which has the best SMSE is shown in Figure \ref{pic9}.
+\begin{figure}
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/predict_GP09.pdf}\\
+  \caption{Result of Gaussian process with the best SMSE}\label{pic9}
+\end{figure}
 
 \section{Conclusions}
+
 
 \bibliography{report}\addcontentsline{toc}{section}{Reference}
 \end{document}
