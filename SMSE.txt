@@ -4,3 +4,14 @@ epsilon-SVR linear kernel 0.100582
 PCR with 10 components 0.100806
 PLSR with 14 components 0.082091
 
+GP01 covSEiso infExact 0.085254
+GP02 covSEiso infEP 0.084868
+GP03 covSEiso infLaplace 0.085691
+GP04 covSEiso infVB 0.084877
+GP05 covSeiso infKL 0.085814
+GP06 covSeiso infLOO 0.089122
+
+GP07 covSEiso likLaplace infEP 0.085788
+
+GP08 covMaterniso5 infEP 0.084075
+GP09 covMaterniso5 infVB 0.083809

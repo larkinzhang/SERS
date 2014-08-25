@@ -35,7 +35,7 @@ load index;
 
 %load lambda;
 %lambda = lambda';
-lambda = 0:0.00001:0.0001;
+lambda = 0:0.00002:0.1;
 %lambda=[0.0001 0.0008];
 lambdacnt = size(lambda,2);
 tot = zeros(lambdacnt,1);
@@ -43,14 +43,14 @@ v = zeros(lambdacnt*nreps, 1044);
 
 fhandle = zeros(lambdacnt,1);
 
-for i = 1:lambdacnt
-    fhandle(i) = figure;
-    xlabel('Observed Response');
-    ylabel('Fitted Response');  
-    lx = [min(pH) max(pH)];
-    ly = lx;
-    plot(lx, ly);
-end
+%for i = 1:lambdacnt
+%    fhandle(i) = figure;
+%    xlabel('Observed Response');
+%    ylabel('Fitted Response');  
+%    lx = [min(pH) max(pH)];
+%    ly = lx;
+%    plot(lx, ly);
+%end
 
 for i = 1:nreps
         test = (indices == i); train = ~test;
@@ -63,8 +63,8 @@ for i = 1:nreps
         B = lasso(PCAScores(:,1:10),pHtrain - mean(pHtrain),'Lambda',lambda);
    
         for k = 1:lambdacnt
-            figure(fhandle(k));
-            hold on;
+%            figure(fhandle(k));
+%            hold on;
             betaLasso = B(:,k);
             betaLasso = PCALoadings(:,1:10) * betaLasso;
             
@@ -72,10 +72,10 @@ for i = 1:nreps
         
             betaLasso = [mean(pHtrain) - mean(Xtrain) * betaLasso; betaLasso];
             yfitLasso = [ones(size(Xtest,1),1) Xtest] * betaLasso;
-            plot(pHtest,yfitLasso,'bo');
+%            plot(pHtest,yfitLasso,'bo');
             
 
-            SMSE = (sum((yfitLasso - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2)) / nlevels;
+            SMSE = (sum((yfitLasso - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
             tot(k) = tot(k) + SMSE;
         end
 end
