@@ -45,9 +45,9 @@ Recently, the chemists found that gold nanoshells can be used as intracellular s
 So when given the spectrum, the problem is how to predict the pH value. We have tried four regression methods, that is principal component regression (PCR), partial least squared regression (PLSR), lasso regression and kernel regression, on the data.
 
 \section{Data}
-There are 120 samples in the dataset by 2 chips. For each chip, there are 5 replications for 12 pH values, that is 60 samples. The spectrum is a 1044 dimension vector for each sample, and each dimension represents a Raman intensity for a Raman shift.
+There are 120 samples in the dataset by two chips. For each chip, there are five replications for twelve pH values, that is 60 samples. The spectrum is a 1044 dimension vector for each sample, and each dimension represents a Raman intensity for a Raman shift.
 
-There are 2 datasets we have got for experiments. The first dataset we used was produced with the order that pH value is increasing. We have found in the dataset that the intensity is lower and lower when the pH value is greater than 7 as shown in Figure \ref{pic1}.
+There are two datasets we have got for experiments. The first dataset we used was produced with the order that pH value is increasing. We have found in the dataset that the intensity is lower and lower when the pH value is greater than 7 as shown in Figure \ref{pic1}.
 
 \begin{figure}[h]
   \centering
@@ -82,7 +82,7 @@ As for the raw data, we plot the 5 replications in one plot for each pH values a
 
 We can find that when the pH value is increasing, not like in the previous dataset, the peak isn't lower and lower as the pH value is increasing all the time.
 
-Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value due to the systematic loss of nanoparticles. Suggested by chemists, normalization is a good way to avoid such variation. The method we used is normalizing the total area under the curve.
+Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value due to the systematic loss of nanoparticles. Suggested by chemists, normalization is a good way to avoid such variation. The method we choose to use is normalizing the total area under the curve.
 \subsection{Normalization}
 As mentioned in previous section, I have normalized the total area under the curve for every spectrum as shown in Figure \ref{pic3}.
 \begin{figure}[h]
@@ -104,11 +104,11 @@ As mentioned in previous section, I have normalized the total area under the cur
 \caption{Plots for each pH values of data after normalization}\label{pic3}
 \end{figure}
 
-As we can see from the figure that the normalization does eliminate the differences among samples of the same pH value.
+As we can see from the figure, the normalization does eliminate the differences among samples of the same pH value.
 \section{Methods}
-There are only 60 samples. Since the number of sample is very small, we'll use cross validation to judge which method is better.
+There are only 60 samples for each chip. Since the number of sample is very small, we'll use cross validation to judge which method is better.
 
-For cross validation, we divide samples into 5 folds. For each fold, there are not two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE)%, mean absolute error (MAE) and coefficient of determination ($R^2$) for evaluation. 
+For cross validation, we divide samples into 5 folds. For each fold, there are not two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE) for evaluation%, mean absolute error (MAE) and coefficient of determination ($R^2$) for evaluation. 
 \begin{equation}
 \mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2}.
 \end{equation}
@@ -118,7 +118,7 @@ For cross validation, we divide samples into 5 folds. For each fold, there are n
 %\begin{equation}
 %R^2=1-\frac{\displaystyle \sum_{i=1}^n (y_i - \hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i - \bar{y})^2}=1-\mathrm{SMSE}
 %\end{equation}
-Here, $y_i$ represents the actual pH values of spectra in testing set, and $\bar{y}$ is mean of $y_i$. And $\hat{y_i}$ is the predict pH values of spectra in testing set. At last, $n$ is the size of testing set.
+Here, $y_i$ represents the actual pH values of $i$-th spectrum in testing set, and $\bar{y}$ is mean of $y_i$. And $\hat{y_i}$ is the predict pH values of $i$-th spectrum in testing set. At last, $n$ is the size of testing set.
 \subsection{Linear Regression}
 The basic method of regression is linear regression. The simplest linear model is one that involves a linear combination of the spectrum
 \begin{equation}
@@ -126,7 +126,7 @@ f(\bfx,\bfv)=v_0+v_1x_1\ldots+v_Dx_D,
 \end{equation}
 where $\bfx=(x_1,\ldots,x_D)^T$ and here $D$ is 1044 in our dataset. The key property of this model is that it is a linear function of the parameter $v_0,v_1,\ldots,v_D$. 
 
-However, it may be not possible for all the points representing all the spectra in the training data to be all on the same plane. So what we're going to do is to minimize
+However, it may be not possible for all the points representing all the spectra in the training set to be all on the same plane. So what we're going to do is to minimize the cost function
 \begin{equation}
 J(\bfv)=\sum_{i=1}^m (f(\bfx_i,\bfv)-y_i)^2,
 \end{equation}
@@ -134,8 +134,9 @@ which minimizes the total difference between the predicted pH value and the obse
 \begin{equation}
 \hat{\bfv}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}.
 \end{equation}
+which enables us to directly calculate the best $\bfv$ given the training data.
 
-As the dimension of the spectrum is 1044 dimensions and the number of samples is only 60, it's not possible to directly use the method mentioned above, and there are two methods mentioned below which can handle this situation.
+As the dimension of the spectrum is 1044 dimensions and the number of samples for one chip is only 60, it's not possible to directly use the method mentioned above, and there are two methods mentioned below which can resolve this issue.
 \subsubsection{Principal Component Regression}
 Principal component regression (PCR) is a regression analysis technique that is based on principal component analysis (PCA) \cite{jolliffe2005principal}. 
 
@@ -143,15 +144,15 @@ PCA is a statistical procedure that uses an orthogonal transformation to convert
 
 Using the PCA first can make the dimension of spectrum less than 60, and then we can use traditional linear regression on the data.
 \subsubsection{Partial Least Squares Regression}
-Partial least squares regression (PLSR) \cite{geladi1986partial} is a statistical method that bears some relation to principal components regression. Instead of finding hyperplanes of minimum variance between the response and independent variables, it finds a linear regression model by projecting the predicted variables and the observable variables to a new space.
+Partial least squares regression (PLSR) \cite{geladi1986partial} is a statistical method that has some relation to principal components regression. Instead of finding hyperplanes of minimum variance between the response and independent variables, it finds a linear regression model by projecting the predicted variables and the observable variables to a new space.
 
 As PLS considers not only the spectra but also the pH values corresponding to them, PLSR has better performance in a lot of cases than PCR.
 \subsection{Lasso Regression}
-Lasso regression \cite{tibshirani1996regression} is a regularized version of linear regression which can avoid over-fitting. It minimizes
+Lasso regression \cite{tibshirani1996regression} is a regularized version of linear regression which can avoid over-fitting. It minimizes the cost function
 \begin{equation}
 J(\bfv)=\sum_{i=1}^m (f(\bfx_i,\bfv)-y_i)^2+\alpha ||\bfv||.
 \end{equation}
-Here, $\alpha$ is an important parameter to control the intensity of regularization. The larger $\alpha$ is, more numbers of values in vector $\bfv$ will be equal to 0 or nearly 0.
+Here, $\alpha$ is an important parameter to control the intensity of regularization. The larger $\alpha$ is, more numbers of values in vector $\bfv$ will be equal to 0 or nearly 0 for that the cost function is minimized.
 \subsection{Kernel Regression}
 Kernel regression \cite{nadaraya1964estimating} is quite a different method from the methods mentioned above.
 
@@ -174,7 +175,7 @@ Gaussian process regression is a very good way for regression. Not like the trad
 \newpage
 \section{Results}
 \subsection{Principal Component Regression}
-To use PCR to do regression work, the first problem needed to be solved is determining how many principal components should be used. Before solving this problem, we can see the percent variance explained by the corresponding principal component in Figure \ref{pcrb1}.
+To use PCR for regression, the first problem needed to be solved is determining how many principal components should be used. Before solving this problem, we can see the percent variance explained by the corresponding principal component in Figure \ref{pcrb1}.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -272,13 +273,13 @@ To find the best $\alpha$ in kernel regression, we also use grid search to deter
 Unfortunately, the performances are very poor no matter which $\sigma$ is chosen. When I try support vector regression with rbf kernel on the dataset, the performance is also very poor. The linear kernel, however, has a very good performance on this dataset. That may mean non-linear regression model  may not fit the data in this dataset.
 
 \subsection{Gaussian Process Regression}
-To use Gaussian process, we should determine two functions first, that is mean function and covariance function. And to do regression work, we should also determine which likelihood function is used. And inference method is also needed to find hyperparameters.
+To use Gaussian process, we should determine two functions first, that is mean function and covariance function. And to do regression work, we should also determine which likelihood function is used and the inference method to find hyperparameters.
 
 From the previous sections, we know that a linear mean function like
 \begin{equation}
 m(\bfx)=\sum_{i=1}^n a_ix_i + a_0
 \end{equation}
-is more suitable for our dataset, so this function is the only mean function we have chosen for later experiments.
+may be more suitable for our dataset, so this function is the only one we have chosen for later experiments.
 
 As for covariance function, two functions have been chosen for experiments. The first one is squared exponential covariance function
 \begin{equation}
@@ -294,7 +295,7 @@ And since we're going to do regression work, we choose the traditional Gaussian 
 \begin{equation}
 f(x)=\frac{1}{\sigma\sqrt{2\pi}} \exp\Big[ -\frac{(x-\mu)^2}{2\sigma^2} \Big].
 \end{equation}
-Here, $\mu$ is the mean and $\sigma$ is the standard deviation. And only the standard deviation is in the hyperparameters.
+Here, $\mu$ is the mean and $\sigma$ is the standard deviation. But only the standard deviation is in the hyperparameters.
 
 And we have choose some different inference methods to get optimized hyperparameters. Table \ref{table1} shows the result for squared exponential covariance function, while Table \ref{table2} shows the result for Matern covariance function. Note that the two tables of results produced by experiments with the same mean function and likelihood function.
 
