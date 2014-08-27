@@ -6,7 +6,7 @@ nreps = 5;
 %% Virtualization
 fprintf('Visualizing dataset for PLS.\n\n');
 cc = hsv(20);
-load samples_chip1_new;
+load samples_chip2_new;
 load pH2;
 
 featurenum = size(X, 1);
