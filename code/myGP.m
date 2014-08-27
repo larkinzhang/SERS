@@ -3,7 +3,7 @@ clear; close all; clc
 nlevels = 12;
 nreps = 5;
 
-load samples_chip2_new;
+load samples_chip1_new;
 load pH2;
 
 featurenum = size(X, 1);
@@ -20,6 +20,7 @@ load index;
 
 
 tot = 0;
+tot_MAE = 0;
     
 %figure('name', 'PLSR with %d Components');
 hold on;
@@ -36,19 +37,21 @@ for i = 1:nreps
         covfunc = {@covMaterniso, 5};
         likfunc = @likGauss;
         
-        hyp = minimize(hyp, @gp, -100, @infVB, meanfunc, covfunc, likfunc, Xtrain, pHtrain);
-        [pHfit s2] = gp(hyp, @infVB, meanfunc, covfunc, likfunc, Xtrain, pHtrain, Xtest);
+        hyp = minimize(hyp, @gp, -100, @infExact, meanfunc, covfunc, likfunc, Xtrain, pHtrain);
+        [pHfit s2] = gp(hyp, @infExact, meanfunc, covfunc, likfunc, Xtrain, pHtrain, Xtest);
         
         plot(pHtest,pHfit,'bo');
         xlabel('Observed Response');
         ylabel('Fitted Response');
     
         SMSE = (sum((pHfit - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
+        MAE = sum(abs(pHfit - pHtest)) / nlevels;
         tot = tot + SMSE;
+        tot_MAE = tot_MAE + MAE;
 end
 lx = [min(pHtest) max(pHtest)];
 ly = lx;
 plot(lx, ly);
 hold off;
 
-fprintf('The average of SMSE is %f\n', tot / nreps);
+fprintf('The average of SMSE and MAE are %f and %f\n', tot / nreps, tot_MAE / nreps);

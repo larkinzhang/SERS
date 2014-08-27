@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2014.5.29)  26 AUG 2014 16:27
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.1.3)  27 AUG 2014 12:19
 entering extended mode
  %&-line parsing enabled.
 **report
@@ -49,14 +49,6 @@ File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 Package: kvoptions 2006/08/22 v2.4 Connects package keyval with LaTeX options (
 HO)
 )
-
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\unhbox' on input line 2238.
-
-
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\voidb@x' on input line 2238.
-
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\unhbox' on input line 2238.
@@ -401,49 +393,49 @@ File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 <images/compare.pdf, id=80, 449.68pt x 338.26375pt>
 File: images/compare.pdf Graphic file (type pdf)
  <use images/compare.pdf>
-<images/1.pdf, id=82, 449.68pt x 338.26375pt>
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/compare.pdf>]
+<images/1.pdf, id=96, 449.68pt x 338.26375pt>
 File: images/1.pdf Graphic file (type pdf)
  <use images/1.pdf>
-<images/2.pdf, id=83, 449.68pt x 338.26375pt>
+<images/2.pdf, id=97, 449.68pt x 338.26375pt>
 File: images/2.pdf Graphic file (type pdf)
  <use images/2.pdf>
-<images/3.pdf, id=84, 449.68pt x 338.26375pt>
+<images/3.pdf, id=98, 449.68pt x 338.26375pt>
 File: images/3.pdf Graphic file (type pdf)
  <use images/3.pdf>
-<images/4.pdf, id=85, 449.68pt x 338.26375pt>
+<images/4.pdf, id=99, 449.68pt x 338.26375pt>
 File: images/4.pdf Graphic file (type pdf)
  <use images/4.pdf>
-<images/5.pdf, id=86, 449.68pt x 338.26375pt>
+<images/5.pdf, id=100, 449.68pt x 338.26375pt>
 File: images/5.pdf Graphic file (type pdf)
  <use images/5.pdf>
-<images/6.pdf, id=87, 449.68pt x 338.26375pt>
+<images/6.pdf, id=101, 449.68pt x 338.26375pt>
 File: images/6.pdf Graphic file (type pdf)
  <use images/6.pdf>
-<images/7.pdf, id=88, 449.68pt x 338.26375pt>
+<images/7.pdf, id=102, 449.68pt x 338.26375pt>
 File: images/7.pdf Graphic file (type pdf)
  <use images/7.pdf>
-<images/8.pdf, id=89, 449.68pt x 338.26375pt>
+<images/8.pdf, id=103, 449.68pt x 338.26375pt>
 File: images/8.pdf Graphic file (type pdf)
  <use images/8.pdf>
-<images/9.pdf, id=90, 449.68pt x 338.26375pt>
+<images/9.pdf, id=104, 449.68pt x 338.26375pt>
 File: images/9.pdf Graphic file (type pdf)
  <use images/9.pdf>
-<images/10.pdf, id=91, 449.68pt x 338.26375pt>
+<images/10.pdf, id=105, 449.68pt x 338.26375pt>
 File: images/10.pdf Graphic file (type pdf)
  <use images/10.pdf>
-<images/11.pdf, id=92, 449.68pt x 338.26375pt>
+<images/11.pdf, id=106, 449.68pt x 338.26375pt>
 File: images/11.pdf Graphic file (type pdf)
  <use images/11.pdf>
-<images/12.pdf, id=93, 449.68pt x 338.26375pt>
+<images/12.pdf, id=107, 449.68pt x 338.26375pt>
 File: images/12.pdf Graphic file (type pdf)
  <use images/12.pdf>
 Overfull \hbox (31.7344pt too wide) in paragraph at lines 66--80
  [][] 
  []
 
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/compare.pdf>]
 <images/n1.pdf, id=109, 449.68pt x 338.26375pt>
 File: images/n1.pdf Graphic file (type pdf)
  <use images/n1.pdf>
@@ -484,47 +476,44 @@ Overfull \hbox (31.7344pt too wide) in paragraph at lines 90--104
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [2 <./images/1.pdf> <./images/2.pdf> <./images/3.pdf> <./images/4.pdf> <./image
 s/5.pdf> <./images/6.pdf> <./images/7.pdf> <./images/8.pdf> <./images/9.pdf> <.
 /images/10.pdf> <./images/11.pdf> <./images/12.pdf>] [3 <./images/n1.pdf> <./im
 ages/n2.pdf> <./images/n3.pdf> <./images/n4.pdf> <./images/n5.pdf> <./images/n6
 .pdf> <./images/n7.pdf> <./images/n8.pdf> <./images/n9.pdf> <./images/n10.pdf> 
 <./images/n11.pdf> <./images/n12.pdf>] [4] [5]
-<images/explain_PCR.pdf, id=331, 449.68pt x 338.26375pt>
+<images/explain_PCR.pdf, id=332, 449.68pt x 338.26375pt>
 File: images/explain_PCR.pdf Graphic file (type pdf)
 
 <use images/explain_PCR.pdf>
-<images/gsearch_PCR.pdf, id=333, 449.68pt x 338.26375pt>
+<images/gsearch_PCR.pdf, id=334, 449.68pt x 338.26375pt>
 File: images/gsearch_PCR.pdf Graphic file (type pdf)
 
 <use images/gsearch_PCR.pdf> [6 <./images/explain_PCR.pdf> <./images/gsearch_PC
-R.pdf>] <images/predict_PCR.pdf, id=353, 449.68pt x 338.26375pt>
+R.pdf>] <images/predict_PCR.pdf, id=354, 449.68pt x 338.26375pt>
 File: images/predict_PCR.pdf Graphic file (type pdf)
 
 <use images/predict_PCR.pdf>
-<images/v_PCR.pdf, id=355, 449.68pt x 338.26375pt>
+<images/v_PCR.pdf, id=356, 449.68pt x 338.26375pt>
 File: images/v_PCR.pdf Graphic file (type pdf)
  <use images/v_PCR.pdf>
 [7 <./images/predict_PCR.pdf> <./images/v_PCR.pdf>]
-<images/explain_PLSR.pdf, id=377, 449.68pt x 338.26375pt>
+<images/explain_PLSR.pdf, id=378, 449.68pt x 338.26375pt>
 File: images/explain_PLSR.pdf Graphic file (type pdf)
 
 <use images/explain_PLSR.pdf>
-<images/gsearch_PLSR.pdf, id=379, 449.68pt x 338.26375pt>
+<images/gsearch_PLSR.pdf, id=380, 449.68pt x 338.26375pt>
 File: images/gsearch_PLSR.pdf Graphic file (type pdf)
 
 <use images/gsearch_PLSR.pdf> [8 <./images/explain_PLSR.pdf> <./images/gsearch_
-PLSR.pdf>] <images/predict_PLSR.pdf, id=399, 449.68pt x 338.26375pt>
+PLSR.pdf>] <images/predict_PLSR.pdf, id=400, 449.68pt x 338.26375pt>
 File: images/predict_PLSR.pdf Graphic file (type pdf)
 
 <use images/predict_PLSR.pdf>
-<images/v_PLSR.pdf, id=401, 449.68pt x 338.26375pt>
+<images/v_PLSR.pdf, id=402, 449.68pt x 338.26375pt>
 File: images/v_PLSR.pdf Graphic file (type pdf)
  <use images/v_PLSR.pdf>
-<images/lasso.pdf, id=402, 449.68pt x 338.26375pt>
+<images/lasso.pdf, id=403, 449.68pt x 338.26375pt>
 File: images/lasso.pdf Graphic file (type pdf)
  <use images/lasso.pdf>
 
@@ -537,13 +526,13 @@ File: images/predict_GP09.pdf Graphic file (type pdf)
 <use images/predict_GP09.pdf> (./report.bbl [11 <./images/predict_GP09.pdf>])
 [12] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 6040 strings out of 256216
- 81209 string characters out of 1917072
- 151153 words of memory out of 1500000
+ 6041 strings out of 256216
+ 81220 string characters out of 1917073
+ 151113 words of memory out of 1500000
  9162 multiletter control sequences out of 10000+200000
  12784 words of font info for 49 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 27i,13n,36p,578b,408s stack positions out of 5000i,500n,6000p,200000b,15000s
+ 27i,13n,36p,578b,404s stack positions out of 5000i,500n,6000p,200000b,15000s
 </usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/
 share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/blu
 esky/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/sh
@@ -553,9 +542,9 @@ exmf/fonts/type1/bluesky/cm/cmr5.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
 mr7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/f
 onts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti10
 .pfb>
-Output written on report.pdf (12 pages, 825873 bytes).
+Output written on report.pdf (12 pages, 829150 bytes).
 PDF statistics:
- 519 PDF objects out of 1000 (max. 8388607)
- 61 named destinations out of 1000 (max. 131072)
+ 520 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 131072)
  336 words of extra memory for PDF output out of 10000 (max. 10000000)
 

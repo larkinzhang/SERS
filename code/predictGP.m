@@ -6,7 +6,7 @@ X = bsxfun(@rdivide,X,sumup);
 meanfunc = {@meanSum, {@meanLinear, @meanConst}};
 covfunc = {@covMaterniso, 5};
 likfunc = @likGauss;
-[retpH s2] = gp(hyp, @infVB, meanfunc, covfunc, likfunc, hyp.X, hyp.pH, X);   
+[retpH s2] = gp(hyp, @infExact, meanfunc, covfunc, likfunc, hyp.X, hyp.pH, X);   
      
 SMSE = (sum((retpH - pH) .^ 2) / sum((pH - mean(pH)) .^ 2));
 MAE = sum(abs(retpH - pH)) / size(pH, 1);
