@@ -297,42 +297,9 @@ f(x)=\frac{1}{\sigma\sqrt{2\pi}} \exp\Big[ -\frac{(x-\mu)^2}{2\sigma^2} \Big].
 \end{equation}
 Here, $\mu$ is the mean and $\sigma$ is the standard deviation. But only the standard deviation is in the hyperparameters.
 
-And we have choose some different inference methods to get optimized hyperparameters. Table \ref{table1} shows the result for squared exponential covariance function, while Table \ref{table2} shows the result for Matern covariance function. Note that the two tables of results produced by experiments with the same mean function and likelihood function.
+Meanwhile, the inference method we choose is \texttt{infExact}.
 
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\textbf{No.} & GP01 & GP02 & GP03 & GP04 & GP05 & GP06 \\
-\hline
-\textbf{Method} & infExact & infEP & infLaplace & infVB & infKL & infLOO \\
-\hline
-\textbf{SMSE} & 0.085254 & 0.084868 & 0.085691 & 0.084877 & 0.085814 & 0.089122 \\
-\hline
-\end{tabular}
-\caption{Result for squared exponential covariance function}\label{table1}
-\end{table}
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\textbf{No.} & GP07 & GP08 & GP09 & GP10 & GP11 & GP12 \\
-\hline
-\textbf{Method} & infExact & infEP & infLaplace & infVB & infKL & infLOO \\
-\hline
-\textbf{SMSE} & 0.086177 & 0.084075 & 0.083821 & 0.083809 & 0.084479 & 0.089021 \\
-\hline
-\end{tabular}
-\caption{Result for Matern covariance function}\label{table2}
-\end{table}
-
-The result predicted by GP10 which has the best SMSE is shown in Figure \ref{pic9}.
-\begin{figure}
-  \centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=.6\textwidth]{images/predict_GP09.pdf}\\
-  \caption{Result of Gaussian process with the best SMSE}\label{pic9}
-\end{figure}
+The SMSE with squared exponential covariance function is 0.085254, while the SMSE with Matern covariance function is 0.086177.
 
 
 \bibliography{report}\addcontentsline{toc}{section}{Reference}
