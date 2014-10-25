@@ -36,8 +36,8 @@ for i = 1:nreps
         covfunc = {@covMaterniso, 5};
         likfunc = @likGauss;
         
-        hyp = minimize(hyp, @gp, -100, @infVB, meanfunc, covfunc, likfunc, Xtrain, pHtrain);
-        [pHfit s2] = gp(hyp, @infVB, meanfunc, covfunc, likfunc, Xtrain, pHtrain, Xtest);
+        hyp = minimize(hyp, @gp, -100, @infExact, meanfunc, covfunc, likfunc, Xtrain, pHtrain);
+        [pHfit s2] = gp(hyp, @infExact, meanfunc, covfunc, likfunc, Xtrain, pHtrain, Xtest);
         
         plot(pHtest,pHfit,'bo');
         xlabel('Observed Response');
