@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2014.4.11)  17 OCT 2014 14:23
+=======
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.1.3)  27 AUG 2014 12:19
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -138,6 +142,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\voidb@x' on input line 4319.
 
+<<<<<<< HEAD
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\unhbox' on input line 4319.
@@ -185,6 +190,18 @@ File: hxetex.def 2012/11/06 v6.83m Hyperref driver for XeTeX
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/stringenc.sty
 Package: stringenc 2011/12/02 v1.10 Convert strings between diff. encodings (HO
 )
+=======
+Package hyperref Info: Hyper figures OFF on input line 2288.
+Package hyperref Info: Link nesting OFF on input line 2293.
+Package hyperref Info: Hyper index ON on input line 2296.
+Package hyperref Info: Plain pages OFF on input line 2303.
+Package hyperref Info: Backreferencing OFF on input line 2308.
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 2444.
+(/usr/share/texmf/tex/latex/html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 )
 \pdfm@box=\box26
 \c@Hy@AnnotLevel=\count96
@@ -466,6 +483,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -500,10 +518,58 @@ File: images/11.pdf Graphic file (type QTm)
 File: images/12.pdf Graphic file (type QTm)
 
 <use  "images/12.pdf" >
+=======
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
+)
+<images/compare.pdf, id=80, 449.68pt x 338.26375pt>
+File: images/compare.pdf Graphic file (type pdf)
+ <use images/compare.pdf>
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/compare.pdf>]
+<images/1.pdf, id=96, 449.68pt x 338.26375pt>
+File: images/1.pdf Graphic file (type pdf)
+ <use images/1.pdf>
+<images/2.pdf, id=97, 449.68pt x 338.26375pt>
+File: images/2.pdf Graphic file (type pdf)
+ <use images/2.pdf>
+<images/3.pdf, id=98, 449.68pt x 338.26375pt>
+File: images/3.pdf Graphic file (type pdf)
+ <use images/3.pdf>
+<images/4.pdf, id=99, 449.68pt x 338.26375pt>
+File: images/4.pdf Graphic file (type pdf)
+ <use images/4.pdf>
+<images/5.pdf, id=100, 449.68pt x 338.26375pt>
+File: images/5.pdf Graphic file (type pdf)
+ <use images/5.pdf>
+<images/6.pdf, id=101, 449.68pt x 338.26375pt>
+File: images/6.pdf Graphic file (type pdf)
+ <use images/6.pdf>
+<images/7.pdf, id=102, 449.68pt x 338.26375pt>
+File: images/7.pdf Graphic file (type pdf)
+ <use images/7.pdf>
+<images/8.pdf, id=103, 449.68pt x 338.26375pt>
+File: images/8.pdf Graphic file (type pdf)
+ <use images/8.pdf>
+<images/9.pdf, id=104, 449.68pt x 338.26375pt>
+File: images/9.pdf Graphic file (type pdf)
+ <use images/9.pdf>
+<images/10.pdf, id=105, 449.68pt x 338.26375pt>
+File: images/10.pdf Graphic file (type pdf)
+ <use images/10.pdf>
+<images/11.pdf, id=106, 449.68pt x 338.26375pt>
+File: images/11.pdf Graphic file (type pdf)
+ <use images/11.pdf>
+<images/12.pdf, id=107, 449.68pt x 338.26375pt>
+File: images/12.pdf Graphic file (type pdf)
+ <use images/12.pdf>
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 Overfull \hbox (31.7344pt too wide) in paragraph at lines 66--80
  [][] 
  []
 
+<<<<<<< HEAD
 [1
 
 ]
@@ -534,10 +600,49 @@ File: images/n11.pdf Graphic file (type QTm)
  <use  "images/n11.pdf" >
 File: images/n12.pdf Graphic file (type QTm)
  <use  "images/n12.pdf" >
+=======
+<images/n1.pdf, id=109, 449.68pt x 338.26375pt>
+File: images/n1.pdf Graphic file (type pdf)
+ <use images/n1.pdf>
+<images/n2.pdf, id=110, 449.68pt x 338.26375pt>
+File: images/n2.pdf Graphic file (type pdf)
+ <use images/n2.pdf>
+<images/n3.pdf, id=111, 449.68pt x 338.26375pt>
+File: images/n3.pdf Graphic file (type pdf)
+ <use images/n3.pdf>
+<images/n4.pdf, id=112, 449.68pt x 338.26375pt>
+File: images/n4.pdf Graphic file (type pdf)
+ <use images/n4.pdf>
+<images/n5.pdf, id=113, 449.68pt x 338.26375pt>
+File: images/n5.pdf Graphic file (type pdf)
+ <use images/n5.pdf>
+<images/n6.pdf, id=114, 449.68pt x 338.26375pt>
+File: images/n6.pdf Graphic file (type pdf)
+ <use images/n6.pdf>
+<images/n7.pdf, id=115, 449.68pt x 338.26375pt>
+File: images/n7.pdf Graphic file (type pdf)
+ <use images/n7.pdf>
+<images/n8.pdf, id=116, 449.68pt x 338.26375pt>
+File: images/n8.pdf Graphic file (type pdf)
+ <use images/n8.pdf>
+<images/n9.pdf, id=117, 449.68pt x 338.26375pt>
+File: images/n9.pdf Graphic file (type pdf)
+ <use images/n9.pdf>
+<images/n10.pdf, id=118, 449.68pt x 338.26375pt>
+File: images/n10.pdf Graphic file (type pdf)
+ <use images/n10.pdf>
+<images/n11.pdf, id=119, 449.68pt x 338.26375pt>
+File: images/n11.pdf Graphic file (type pdf)
+ <use images/n11.pdf>
+<images/n12.pdf, id=120, 449.68pt x 338.26375pt>
+File: images/n12.pdf Graphic file (type pdf)
+ <use images/n12.pdf>
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 Overfull \hbox (31.7344pt too wide) in paragraph at lines 90--104
  [][] 
  []
 
+<<<<<<< HEAD
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -545,6 +650,48 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: images/explain_PCR.pdf Graphic file (type QTm)
  <use  "images/explain_PCR.pdf" >
 File: images/gsearch_PCR.pdf Graphic file (type QTm)
+=======
+[2 <./images/1.pdf> <./images/2.pdf> <./images/3.pdf> <./images/4.pdf> <./image
+s/5.pdf> <./images/6.pdf> <./images/7.pdf> <./images/8.pdf> <./images/9.pdf> <.
+/images/10.pdf> <./images/11.pdf> <./images/12.pdf>] [3 <./images/n1.pdf> <./im
+ages/n2.pdf> <./images/n3.pdf> <./images/n4.pdf> <./images/n5.pdf> <./images/n6
+.pdf> <./images/n7.pdf> <./images/n8.pdf> <./images/n9.pdf> <./images/n10.pdf> 
+<./images/n11.pdf> <./images/n12.pdf>] [4] [5]
+<images/explain_PCR.pdf, id=332, 449.68pt x 338.26375pt>
+File: images/explain_PCR.pdf Graphic file (type pdf)
+
+<use images/explain_PCR.pdf>
+<images/gsearch_PCR.pdf, id=334, 449.68pt x 338.26375pt>
+File: images/gsearch_PCR.pdf Graphic file (type pdf)
+
+<use images/gsearch_PCR.pdf> [6 <./images/explain_PCR.pdf> <./images/gsearch_PC
+R.pdf>] <images/predict_PCR.pdf, id=354, 449.68pt x 338.26375pt>
+File: images/predict_PCR.pdf Graphic file (type pdf)
+
+<use images/predict_PCR.pdf>
+<images/v_PCR.pdf, id=356, 449.68pt x 338.26375pt>
+File: images/v_PCR.pdf Graphic file (type pdf)
+ <use images/v_PCR.pdf>
+[7 <./images/predict_PCR.pdf> <./images/v_PCR.pdf>]
+<images/explain_PLSR.pdf, id=378, 449.68pt x 338.26375pt>
+File: images/explain_PLSR.pdf Graphic file (type pdf)
+
+<use images/explain_PLSR.pdf>
+<images/gsearch_PLSR.pdf, id=380, 449.68pt x 338.26375pt>
+File: images/gsearch_PLSR.pdf Graphic file (type pdf)
+
+<use images/gsearch_PLSR.pdf> [8 <./images/explain_PLSR.pdf> <./images/gsearch_
+PLSR.pdf>] <images/predict_PLSR.pdf, id=400, 449.68pt x 338.26375pt>
+File: images/predict_PLSR.pdf Graphic file (type pdf)
+
+<use images/predict_PLSR.pdf>
+<images/v_PLSR.pdf, id=402, 449.68pt x 338.26375pt>
+File: images/v_PLSR.pdf Graphic file (type pdf)
+ <use images/v_PLSR.pdf>
+<images/lasso.pdf, id=403, 449.68pt x 338.26375pt>
+File: images/lasso.pdf Graphic file (type pdf)
+ <use images/lasso.pdf>
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 
 <use  "images/gsearch_PCR.pdf" > [6]
 File: images/predict_PCR.pdf Graphic file (type QTm)
@@ -556,10 +703,37 @@ File: images/explain_PLSR.pdf Graphic file (type QTm)
  <use  "images/explain_PLSR.pdf" >
 File: images/gsearch_PLSR.pdf Graphic file (type QTm)
 
+<<<<<<< HEAD
 <use  "images/gsearch_PLSR.pdf" > [8]
 File: images/predict_PLSR.pdf Graphic file (type QTm)
  <use  "images/predict_PLSR.pdf" >
 File: images/v_PLSR.pdf Graphic file (type QTm)
+=======
+<use images/predict_GP09.pdf> (./report.bbl [11 <./images/predict_GP09.pdf>])
+[12] (./report.aux) ) 
+Here is how much of TeX's memory you used:
+ 6041 strings out of 256216
+ 81220 string characters out of 1917073
+ 151113 words of memory out of 1500000
+ 9162 multiletter control sequences out of 10000+200000
+ 12784 words of font info for 49 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 27i,13n,36p,578b,404s stack positions out of 5000i,500n,6000p,200000b,15000s
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/
+share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/blu
+esky/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/sh
+are/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/share/texmf/fonts/type1/bluesk
+y/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/t
+exmf/fonts/type1/bluesky/cm/cmr5.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
+mr7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/f
+onts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti10
+.pfb>
+Output written on report.pdf (12 pages, 829150 bytes).
+PDF statistics:
+ 520 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 131072)
+ 336 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 
 <use  "images/v_PLSR.pdf" >
 File: images/lasso.pdf Graphic file (type QTm)

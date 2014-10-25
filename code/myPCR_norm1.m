@@ -59,6 +59,7 @@ load index;
 compcnt = 30;
 v = zeros(compcnt*nreps, featurenum);
 tot = zeros(compcnt, 1);
+tot_MAE = zeros(compcnt, 1);
 
 for k = 1:compcnt
     figure('name', num2str(k, 'PCR with %d Components'));
@@ -85,23 +86,14 @@ for k = 1:compcnt
         ylabel('Fitted Response');
 
         SMSE = (sum((yfitPCR - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
+        MAE = sum(abs(yfitPCR - pHtest)) / nlevels;
         tot(k) = tot(k) + SMSE;
+        tot_MAE(k) = tot_MAE(k) + MAE;
     end
     lx = [min(pHtest) max(pHtest)];
     ly = lx;
     plot(lx, ly);
     hold off;
 
-    fprintf('The average of SMSE with %d components is %f\n', k, tot(k) / nreps);
+    fprintf('The average of SMSE and MAE with %d components are %f and %f\n', k, tot(k) / nreps, tot_MAE(k) / nreps);
 end
-
-figure('name', 'Figure for v');
-[PCALoadings,PCAScores,PCAVar,TSQUARED,EXPLAINED] = pca(v);
-hold on;
-for i = 0:compcnt - 1
-    plot(PCAScores(i*nreps+1:i*nreps+nreps,1), PCAScores(i*nreps+1:i*nreps+nreps,2), 's-', 'color', cc(i+1,:));
-end
-
-legendCell = cellstr(num2str(((1:5)*2)', '%d components'));
-legend(legendCell, 'Location', 'BestOutside');
-hold off;

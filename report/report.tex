@@ -1,6 +1,6 @@
 \documentclass[a4paper]{article}
 
-\usepackage[pdfauthor=Zhang~Yichi,pdftitle=Predicting~pH~from~SERS~Data]{hyperref}
+\usepackage[,pdftitle=Predicting~pH~from~SERS~Data]{hyperref}
 \usepackage{amsmath,amsfonts,amsthm}
 \usepackage{longtable}
 \usepackage{graphicx}
@@ -33,19 +33,19 @@
 		
 \begin{document}
 \title{\textbf{Predicting pH from SERS Data}}
-\author{Zhang Yichi}
+\author{Zhang Yichi\\ Supervisor: Prof. C.K.I. Williams}
 \date{August 2014}
 \maketitle
 
 \section{Introduction}
-Blood tests are often used in health care to determine physiological and biochemical states of patients. But using the traditional way, we need to draw blood from patients first and it does take some time to have some tests on it. 
+Blood tests are often used in health care to determine physiological and biochemical states of patients. But as we need to draw blood from patients first, it does take some time to get far results. 
 
 Recently, the chemists found that gold nanoshells can be used as intracellular sensors based on surface-enhanced Raman scattering (SERS) and these materials exhibit low toxicity to the cells of interest. This is a very good property since we can just put the nanoshell into the blood vessel of patients and measure redox potential or pH values of patients' blood instantly.
 
 So when given the spectrum, the problem is how to predict the pH value. We have tried four regression methods, that is principal component regression (PCR), partial least squared regression (PLSR), lasso regression and kernel regression, on the data.
 
 \section{Data}
-There are 120 samples in the dataset by two chips. For each chip, there are five replications for twelve pH values, that is 60 samples. The spectrum is a 1044 dimension vector for each sample, and each dimension represents a Raman intensity for a Raman shift.
+There are 120 samples in the dataset from two chips. For each chip, there are five replications for twelve pH values, that is 60 samples. The spectrum is a 1044 dimension vector for each sample, and each dimension represents a Raman intensity for a given Raman shift.
 
 There are two datasets we have got for experiments. The first dataset we used was produced with the order that pH value is increasing. We have found in the dataset that the intensity is lower and lower when the pH value is greater than 7 as shown in Figure \ref{pic1}.
 
@@ -53,7 +53,7 @@ There are two datasets we have got for experiments. The first dataset we used wa
   \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=.6\textwidth]{images/compare.pdf}\\
-  \caption{The mean spectrum for different pH values in the first dataset}\label{pic1}
+  \caption{The mean spectrum for different pH values in the first dataset.}\label{pic1}
 \end{figure}
 
 However, the chemists have told us that the intensity is lower and lower maybe due to the systematic loss of nanoparticles through time.
@@ -82,7 +82,7 @@ As for the raw data, we plot the 5 replications in one plot for each pH values a
 
 We can find that when the pH value is increasing, not like in the previous dataset, the peak isn't lower and lower as the pH value is increasing all the time.
 
-Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value due to the systematic loss of nanoparticles. Suggested by chemists, normalization is a good way to avoid such variation. The method we choose to use is normalizing the total area under the curve.
+Meanwhile, we can find that for some pH values, the curves look dramatically different for the same pH value due to different nanoparticles densities on part of the experimental well. Suggested by chemists, normalization is a good way to avoid such variation. The method we choose to use is normalizing the total area under the curve.
 \subsection{Normalization}
 As mentioned in previous section, I have normalized the total area under the curve for every spectrum as shown in Figure \ref{pic3}.
 \begin{figure}[h]
@@ -108,23 +108,23 @@ As we can see from the figure, the normalization does eliminate the differences 
 \section{Methods}
 There are only 60 samples for each chip. Since the number of sample is very small, we'll use cross validation to judge which method is better.
 
-For cross validation, we divide samples into 5 folds. For each fold, there are not two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE) for evaluation%, mean absolute error (MAE) and coefficient of determination ($R^2$) for evaluation. 
+For cross validation, we divide samples into 5 folds. For each fold, no two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE) and mean absolute error (MAE) to measure performance% and coefficient of determination ($R^2$) for evaluation. 
 \begin{equation}
 \mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2}.
 \end{equation}
-%\begin{equation}
-%\mathrm{MAE}=\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y_i}|
-%\end{equation}
+\begin{equation}
+\mathrm{MAE}=\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y_i}|
+\end{equation}
 %\begin{equation}
 %R^2=1-\frac{\displaystyle \sum_{i=1}^n (y_i - \hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i - \bar{y})^2}=1-\mathrm{SMSE}
 %\end{equation}
-Here, $y_i$ represents the actual pH values of $i$-th spectrum in testing set, and $\bar{y}$ is mean of $y_i$. And $\hat{y_i}$ is the predict pH values of $i$-th spectrum in testing set. At last, $n$ is the size of testing set.
+Here, $y_i$ represents the actual pH values of $i$-th spectrum in testing set, and $\bar{y}$ is mean of $y_i$. And $\hat{y_i}$ is the predicted pH values of $i$-th spectrum in testing set, and $n$ is the size of testing set.
 \subsection{Linear Regression}
 The basic method of regression is linear regression. The simplest linear model is one that involves a linear combination of the spectrum
 \begin{equation}
 f(\bfx,\bfv)=v_0+v_1x_1\ldots+v_Dx_D,
 \end{equation}
-where $\bfx=(x_1,\ldots,x_D)^T$ and here $D$ is 1044 in our dataset. The key property of this model is that it is a linear function of the parameter $v_0,v_1,\ldots,v_D$. 
+where $\bfx=(x_1,\ldots,x_D)^T$ and here $D$ is 1044 in our dataset. The key property of this model is that it is a linear function of the parameters $v_0,v_1,\ldots,v_D$. 
 
 However, it may be not possible for all the points representing all the spectra in the training set to be all on the same plane. So what we're going to do is to minimize the cost function
 \begin{equation}
@@ -152,7 +152,7 @@ Lasso regression \cite{tibshirani1996regression} is a regularized version of lin
 \begin{equation}
 J(\bfv)=\sum_{i=1}^m (f(\bfx_i,\bfv)-y_i)^2+\alpha ||\bfv||.
 \end{equation}
-Here, $\alpha$ is an important parameter to control the intensity of regularization. The larger $\alpha$ is, more numbers of values in vector $\bfv$ will be equal to 0 or nearly 0 for that the cost function is minimized.
+Here, $\alpha$ is an important parameter to control the intensity of regularization. The larger $\alpha$ is, more values in vector $\bfv$ will be equal to 0 or nearly 0 for that the cost function is minimized.
 \subsection{Kernel Regression}
 Kernel regression \cite{nadaraya1964estimating} is quite a different method from the methods mentioned above.
 
@@ -194,7 +194,7 @@ And to find the smallest SMSE, we choose to use the grid search. The result of g
 \end{figure}
 
 \newpage
-We can find that the SMSE is smallest when the number of principal components is equal to 9. The result predicted by PCR with 9 principal components is shown in Figure \ref{pic4}. And the SMSE is 0.098476.
+We can find that the SMSE is smallest when the number of principal components is equal to 9. The result predicted by PCR with 9 principal components is shown in Figure \ref{pic4}. And the SMSE is 0.098476 and MAE is 0.090856.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
@@ -233,7 +233,7 @@ And we use the same method, grid search, to find the smallest SMSE. The result o
 \end{figure}
 
 \newpage
-We can find that the SMSE is smallest when the number of principal components is equal to 14. As we expected, this method has better performance than PCR, with SMSE 0.082091. 
+We can find that the SMSE is smallest when the number of principal components is equal to 14. As we expected, this method has better performance than PCR, with SMSE 0.082091 and MAE 0.085736. 
 
 The result predicted by PLSR is shown in Figure \ref{pic6}.
 \begin{figure}[h]
@@ -251,7 +251,7 @@ The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{
   \caption{Plot of mean of $\bfv$ for PLSR with 14 components}\label{pic7}
 \end{figure}
 
-As we can see, the curve is not that smooth like that of $\bfv$ for PCR and thus it's not easy for further analysis on it. So we try lasso regression in the next section to make the curve smoother. 
+As we can see, the curve is not that smooth like that of $\bfv$ for PCR and thus it's not easy to further analyse it. So we try lasso regression in the next section to make the curve smoother. 
 
 \subsection{Lasso Regression}
 To make the curve smoother for further analysis and avoid the potential over-fitting problem, lasso regression is used to replace the linear regression in PCR and PLSR.
@@ -283,13 +283,13 @@ may be more suitable for our dataset, so this function is the only one we have c
 
 As for covariance function, two functions have been chosen for experiments. The first one is squared exponential covariance function
 \begin{equation}
-k(\bfx_p,\bfx_q)=\sigma_0^2\exp\Big[-\frac{(\bfx_p-\bfx_q)'\times P^{-1} \times (\bfx_p-\bfx_q)}{2}\Big].
+k(\bfx_p,\bfx_q)=\sigma_0^2\exp\Big[-\frac{(\bfx_p-\bfx_q)'P^{-1}(\bfx_p-\bfx_q)}{2}\Big].
 \end{equation}
 Here, $P$ is equal to $\lambda$ times the unit matrix. And both $\sigma_0$ and $\lambda$ are hyperparameters. The second one is Matern covariance function
 \begin{equation}
-k(\bfx_p,\bfx_q)=\sigma_0^2\times f(\sqrt{d}r)\times \exp(-\sqrt{d}r).
+k(\bfx_p,\bfx_q)=\sigma_0^2f(\sqrt{d}r)\exp(-\sqrt{d}r).
 \end{equation}
-Here, $d$ is set to be 5 in our experiments, and function $f$ is set to be $f(t)=\frac{1+t+t^2}{3}$. And $r$ is the distance $\sqrt{(\bfx_p-\bfx_q)'\times P^{-1} \times (\bfx_p-\bfx_q)}$, while $P$ is the same matrix as above. So it's the same that both $\sigma_0$ and $\lambda$ are hyperparameters.
+Here, $d$ is set to be 5 in our experiments, and function $f$ is set to be $f(t)=\frac{1+t+t^2}{3}$. And $r$ is the distance $\sqrt{(\bfx_p-\bfx_q)'P^{-1}(\bfx_p-\bfx_q)}$, while $P$ is the same matrix as above. So it's the same that both $\sigma_0$ and $\lambda$ are hyperparameters.
 
 And since we're going to do regression work, we choose the traditional Gaussian function for likelihood function
 \begin{equation}
@@ -299,7 +299,48 @@ Here, $\mu$ is the mean and $\sigma$ is the standard deviation. But only the sta
 
 Meanwhile, the inference method we choose is \texttt{infExact}.
 
+<<<<<<< HEAD
 The SMSE with squared exponential covariance function is 0.085254, while the SMSE with Matern covariance function is 0.086177.
+=======
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{No.} & GP01 & GP02 & GP03 & GP04 & GP05 & GP06 \\
+\hline
+\textbf{Method} & infExact & infEP & infLaplace & infVB & infKL & infLOO \\
+\hline
+\textbf{SMSE} & 0.085254 & 0.084868 & 0.085691 & 0.084877 & 0.085814 & 0.089122 \\
+\hline
+\textbf{MAE} & 0.085065 &  &  &  &  & 0.088626 \\
+\hline
+\end{tabular}
+\caption{Result for squared exponential covariance function}\label{table1}
+\end{table}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{No.} & GP07 & GP08 & GP09 & GP10 & GP11 & GP12 \\
+\hline
+\textbf{Method} & infExact & infEP & infLaplace & infVB & infKL & infLOO \\
+\hline
+\textbf{SMSE} & 0.086177 & 0.084075 & 0.083821 & 0.083809 & 0.084479 & 0.089021 \\
+\hline
+\textbf{MAE} & 0.085909 &  &  &  &  & 0.088690 \\
+\hline
+\end{tabular}
+\caption{Result for Matern covariance function}\label{table2}
+\end{table}
+
+The result predicted by GP10 which has the best SMSE is shown in Figure \ref{pic9}.
+\begin{figure}
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/predict_GP09.pdf}\\
+  \caption{Result of Gaussian process with the best SMSE}\label{pic9}
+\end{figure}
+>>>>>>> 252774eaa20767ec8e38bace36172ca2ef355137
 
 
 \bibliography{report}\addcontentsline{toc}{section}{Reference}

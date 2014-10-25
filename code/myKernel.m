@@ -5,7 +5,7 @@ clear; close all; clc
 nlevels = 12;
 nreps = 5;
 
-load samples_chip1_new;
+load samples_chip1s_new;
 load pH2;
 
 featurenum = size(X, 1);
