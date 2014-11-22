@@ -34,7 +34,7 @@
 \begin{document}
 \title{\textbf{Predicting pH from SERS Data}}
 \author{Zhang Yichi\\ Supervisor: Prof. C.K.I. Williams}
-\date{August 2014}
+\date{November 2014}
 \maketitle
 
 \section{Introduction}
@@ -110,10 +110,10 @@ There are only 60 samples for each chip. Since the number of sample is very smal
 
 For cross validation, we divide samples into 5 folds. For each fold, no two samples with the same pH value. Every time, we use 4 folds for training and 1 fold for testing, and use standardized mean squared error (SMSE) and mean absolute error (MAE) to measure performance% and coefficient of determination ($R^2$) for evaluation. 
 \begin{equation}
-\mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2}.
+\mathrm{SMSE}=\frac{\displaystyle \sum_{i=1}^n (y_i-\hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i-\overline{y})^2},
 \end{equation}
 \begin{equation}
-\mathrm{MAE}=\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y_i}|
+\mathrm{MAE}=\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y_i}|.
 \end{equation}
 %\begin{equation}
 %R^2=1-\frac{\displaystyle \sum_{i=1}^n (y_i - \hat{y_i})^2}{\displaystyle \sum_{i=1}^n (y_i - \bar{y})^2}=1-\mathrm{SMSE}
@@ -147,6 +147,11 @@ Using the PCA first can make the dimension of spectrum less than 60, and then we
 Partial least squares regression (PLSR) \cite{geladi1986partial} is a statistical method that has some relation to principal components regression. Instead of finding hyperplanes of minimum variance between the response and independent variables, it finds a linear regression model by projecting the predicted variables and the observable variables to a new space.
 
 As PLS considers not only the spectra but also the pH values corresponding to them, PLSR has better performance in a lot of cases than PCR.
+
+\vspace{10pt}
+
+For PCR and PLSR, the dimension of coefficient is equal to the number of principal components we choose, but for further analysis we should get the coefficient of 1044 dimensions denoted by $\bfv$ before. So we should project the coefficient back to the 1044-dimension space after PCR and PLSR.
+
 \subsection{Lasso Regression}
 Lasso regression \cite{tibshirani1996regression} is a regularized version of linear regression which can avoid over-fitting. It minimizes the cost function
 \begin{equation}
@@ -253,22 +258,36 @@ The visualization of linear regression parameter $\bfv$ is shown in Figure \ref{
 
 As we can see, the curve is not that smooth like that of $\bfv$ for PCR and thus it's not easy to further analyse it. So we try lasso regression in the next section to make the curve smoother. 
 
+\newpage
 \subsection{Lasso Regression}
 To make the curve smoother for further analysis and avoid the potential over-fitting problem, lasso regression is used to replace the linear regression in PCR and PLSR.
+
+For the first step, we should know which $\alpha$ to choose for this method, and again the grid search is a good way. Figure \ref{pic_lasso1} shows the relationship between SMSE and $\alpha$. As we expected, when $\alpha$ is larger and larger, SMSE decreases at first but increases soon later. The smallest SMSE appears when $\alpha$ is around 0.0013, and SMSE is 0.090447 while MAE is 0.086882.
 \begin{figure}[h]
   \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=.6\textwidth]{images/lasso.pdf}\\
-  \caption{The relationship between SMSE and $\alpha$}\label{pic8}
+  \includegraphics[width=.6\textwidth]{images/lasso_new.pdf}\\
+  \caption{Relationship between SMSE and $\alpha$}\label{pic_lasso1}
 \end{figure}
 
-Figure \ref{pic8} shows the change of SMSE as the parameter $\alpha$ of lasso regression is increasing. 
+The result predicted by Lasso regression is shown in Figure \ref{pic_lasso2}.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/predict_lasso.pdf}\\
+  \caption{Lasso regression with $\alpha=0.0013$}\label{pic_lasso2}
+\end{figure}
 
-As we can see in the figure, both the SMSE of PCR and PLSR are increasing. That means there are no over-fitting in the two regression methods before, and smoothing the curve of $\bfv$ is not a good way to improve the performance of those methods.
+And the visualization of linear regression parameter $\bfv$ is shown in Figure \ref{pic_lasso3}. We can see in the visualization that quite a large number of dimension is equal to 0 when we get the best SMSE, and the range of y-axis is quite large than that of visualization of PCR and PLSR. We can see which dimension is more significant in the SERS data from this figure.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/v_lasso.pdf}\\
+  \caption{Plot of mean of $\bfv$ for Lasso regression with $\alpha=0.0013$}\label{pic_lasso3}
+\end{figure}
 
-Moreover, we can find that the SMSE of PLSR increases much faster than that of PCR. As we know from the visualization of $\bfv$ shown before, the curve of $\bfv$ for PCR is much smoother than that of PLSR, so the $\alpha ||\bfv||$ part of the cost function may not affect the performance of PCR that much as $\alpha$ is increasing.
 \subsection{Kernel Regression}
-To find the best $\alpha$ in kernel regression, we also use grid search to determine which $\sigma$ should be chosen in Gaussian kernel.
+To find the best $\sigma$ in kernel regression, we also use grid search to determine which $\sigma$ should be chosen in Gaussian kernel.
 
 Unfortunately, the performances are very poor no matter which $\sigma$ is chosen. When I try support vector regression with rbf kernel on the dataset, the performance is also very poor. The linear kernel, however, has a very good performance on this dataset. That may mean non-linear regression model  may not fit the data in this dataset.
 
@@ -289,7 +308,7 @@ Here, $P$ is equal to $\lambda$ times the unit matrix. And both $\sigma_0$ and $
 \begin{equation}
 k(\bfx_p,\bfx_q)=\sigma_0^2f(\sqrt{d}r)\exp(-\sqrt{d}r).
 \end{equation}
-Here, $d$ is set to be 5 in our experiments, and function $f$ is set to be $f(t)=\frac{1+t+t^2}{3}$. And $r$ is the distance $\sqrt{(\bfx_p-\bfx_q)'P^{-1}(\bfx_p-\bfx_q)}$, while $P$ is the same matrix as above. So it's the same that both $\sigma_0$ and $\lambda$ are hyperparameters.
+Here, $d$ is set to be 5 in our experiments for that we have used grid search and find 5 is the best, and function $f$ is set to be $f(t)=\frac{1+t+t^2}{3}$. And $r$ is the distance $\sqrt{(\bfx_p-\bfx_q)'P^{-1}(\bfx_p-\bfx_q)}$, while $P$ is the same matrix as above. So it's the same that both $\sigma_0$ and $\lambda$ are hyperparameters.
 
 And since we're going to do regression work, we choose the traditional Gaussian function for likelihood function
 \begin{equation}
@@ -299,7 +318,26 @@ Here, $\mu$ is the mean and $\sigma$ is the standard deviation. But only the sta
 
 Meanwhile, the inference method we choose is \texttt{infExact}.
 
-The SMSE with squared exponential covariance function is 0.085254, while the SMSE with Matern covariance function is 0.086177.
+For squared exponential covariance function, SMSE is 0.084074 and MAE is 0.084250. And the result is shown in Figure \ref{pic_gp1}. Meanwhile, for Matern covariance function, SMSE is 0.086487 and MAE is 0.086346. And the result is shown in Figure \ref{pic_gp2}.
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/predict_gp1.pdf}\\
+  \caption{Gaussian process with squared exponential covariance function}\label{pic_gp1}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=.6\textwidth]{images/predict_gp2.pdf}\\
+  \caption{Gaussian process with Matern covariance function}\label{pic_gp2}
+\end{figure}
+
+\subsection{Conclusion}
+We have tried five methods on the dataset, that is principal component regression, partial least squares regression, Lasso regression, kernel regression and Gaussian regression.
+
+The results are satisfied for the first three methods and also Gaussian regression, while the result is not so good for kernel regression. So maybe a linear model is more suitable for this dataset. And our best SMSE and MAE are both smaller than 0.1.
+
+Though there are 1044 dimensions in the dataset, we can see the result from PCR and PLSR that with around 10 principal components we can get the best SMSE. That's a very interesting, and we can know from this that there quite a lot of dimensions in the dataset is not that important or have some relationship with other dimensions. And this can also be proved for that there are lots of 0 in $\bfv$ of Lasso regression. There may be further work we can do to utilize this.
 
 
 \bibliography{report}\addcontentsline{toc}{section}{Reference}

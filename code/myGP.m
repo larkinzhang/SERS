@@ -34,7 +34,7 @@ for i = 1:nreps
    
         hyp.cov = [0; 0]; hyp.mean = zeros(featurenum + 1, 1); hyp.lik = log(0.1);
         meanfunc = {@meanSum, {@meanLinear, @meanConst}};
-        covfunc = {@covMaterniso, 5};
+        covfunc = @covSEiso;
         likfunc = @likGauss;
         
         hyp = minimize(hyp, @gp, -100, @infExact, meanfunc, covfunc, likfunc, Xtrain, pHtrain);
@@ -48,7 +48,7 @@ for i = 1:nreps
         MAE = sum(abs(pHfit - pHtest)) / nlevels;
         tot = tot + SMSE;
         tot_MAE = tot_MAE + MAE;
-end
+
 lx = [min(pHtest) max(pHtest)];
 ly = lx;
 plot(lx, ly);

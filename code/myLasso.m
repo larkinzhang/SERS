@@ -11,6 +11,8 @@ load pH2;
 featurenum = size(X, 1);
 
 X = X';
+sumup = sum(X,2);
+X = bsxfun(@rdivide,X,sumup);
 
 Xtrim = X(:,200:1000);
 
@@ -34,22 +36,31 @@ load index;
 
 %load lambda;
 %lambda = lambda';
-lambda = 0.0001:0.0001:0.0021;
+lambda = 0.0001:0.0001:0.01;
 %lambda=[0.0001 0.0008];
 lambdacnt = size(lambda,2);
 tot = zeros(lambdacnt,1);
+tot_MAE = zeros(lambdacnt,1);
 v = zeros(lambdacnt*nreps, 1000-200+1);
 
 fhandle = zeros(lambdacnt,1);
 
-for i = 1:lambdacnt
-    fhandle(i) = figure;
-    xlabel('Observed Response');
-    ylabel('Fitted Response');  
-    lx = [min(pH) max(pH)];
-    ly = lx;
-    plot(lx, ly);
-end
+%for i = 1:lambdacnt
+%    fhandle(i) = figure;
+%    xlabel('Observed Response');
+%    ylabel('Fitted Response');  
+%    lx = [min(pH) max(pH)];
+%    ly = lx;
+%    plot(lx, ly);
+%end
+
+figure;
+hold on;
+xlabel('Observed Response');
+ylabel('Fitted Response');  
+lx = [min(pH) max(pH)];
+ly = lx;
+plot(lx, ly);
 
 for i = 1:nreps
         test = (indices == i); train = ~test;
@@ -61,18 +72,20 @@ for i = 1:nreps
         B = lasso(Xtrain,pHtrain - mean(pHtrain),'Lambda',lambda);
    
         for k = 1:lambdacnt
-            figure(fhandle(k));
-            hold on;
             betaLasso = B(:,k);
             v((k-1)*nreps+i,:) = betaLasso;
         
             betaLasso = [mean(pHtrain) - mean(Xtrain) * betaLasso; betaLasso];
             yfitLasso = [ones(size(Xtest,1),1) Xtest] * betaLasso;
-            plot(pHtest,yfitLasso,'bo');
+            if (k == 13)
+                plot(pHtest,yfitLasso,'bo');
+            end
             
 
             SMSE = (sum((yfitLasso - pHtest) .^ 2) / sum((pHtest - mean(pHtest)) .^ 2));
+            MAE = sum(abs(yfitLasso - pHtest)) / nlevels;
             tot(k) = tot(k) + SMSE;
+            tot_MAE(k) = tot_MAE(k) + MAE;
         end
 end
 
